@@ -48,10 +48,27 @@ const DashBoard = () => {
     if (saved) return Number(saved);
     return initialChats[0]?.id ?? null;
   });
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    return window.localStorage.getItem("mitraai-theme") || "dark";
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const activeChat = chats.find((chat) => chat.id === selectedChatId) || null;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.localStorage.setItem("mitraai-theme", theme);
+    document.documentElement.classList.toggle("light", theme === "light");
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
+  useEffect(() => {
+    if (selectedChatId !== null && !chats.some((chat) => chat.id === selectedChatId)) {
+      setSelectedChatId(chats[0]?.id ?? null);
+    }
+  }, [chats, selectedChatId]);
 
   useEffect(() => {
     window.localStorage.setItem("mitraai-chats", JSON.stringify(chats));
@@ -67,6 +84,16 @@ const DashBoard = () => {
     setSelectedChatId(null);
     setQuery("");
     setError("");
+  };
+
+  const handleDeleteChat = (chatId) => {
+    setChats((prev) => {
+      const remaining = prev.filter((chat) => chat.id !== chatId);
+      if (selectedChatId === chatId) {
+        setSelectedChatId(remaining[0]?.id ?? null);
+      }
+      return remaining;
+    });
   };
 
   const askQuery = async () => {
@@ -150,39 +177,72 @@ const DashBoard = () => {
   };
 
   return (
-    <div className="main grid grid-cols-5 h-screen bg-zinc-950 text-white">
+    <div
+      className={`main grid grid-cols-5 h-screen transition-colors duration-200 ${
+        theme === "dark" ? "bg-zinc-950 text-white" : "bg-slate-100 text-slate-900"
+      }`}
+    >
       <aside className="col-span-1 border-r border-zinc-800 p-4 flex flex-col gap-4">
         <div>
           <h1 className="text-2xl font-semibold">MitraAI</h1>
-          <p className="text-sm text-zinc-400 mt-1">A New AI TOOL</p>
+          <p className={`text-sm mt-1 ${theme === "dark" ? "text-zinc-400" : "text-slate-500"}`}>A New AI TOOL</p>
         </div>
 
-        <button
-          type="button"
-          className="rounded-2xl border border-zinc-700 bg-zinc-900 px-4 py-3 text-left text-sm font-medium hover:bg-zinc-800"
-          onClick={handleNewChat}
-        >
-          + New chat
-        </button>
+        <div className="flex items-center justify-between gap-2">
+          <button
+            type="button"
+            className={`rounded-2xl border border-zinc-700 px-4 py-3 text-left text-sm font-medium ${theme === "dark" ? "text-zinc-100" : "text-slate-900"}` }
+            onClick={handleNewChat}
+          >
+            + New chat
+          </button>
+          <button
+            type="button"
+            className={`rounded-2xl border border-zinc-700 px-4 py-3 text-sm font-medium hover:bg-zinc-800 ${theme === "dark" ? "text-zinc-100" : "text-slate-900"}` }
+            onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
+          >
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+        </div>
+        <div className={`text-sm mt-2 ${theme === "dark" ? "text-zinc-400" : "text-slate-500"}`}>
+          Manage chats and switch theme.
+        </div>
 
         <div className="overflow-y-auto flex-1 space-y-2 pr-1">
           {chats.length === 0 ? (
-            <p className="text-sm text-zinc-500">No chats yet. Ask something to start.</p>
+            <p className={`text-sm ${theme === "dark" ? "text-zinc-500" : "text-slate-500"}`}>No chats yet. Ask something to start.</p>
           ) : (
             chats.map((chat) => {
               const isActive = chat.id === selectedChatId;
               return (
-                <button
+                <div
                   key={chat.id}
-                  type="button"
-                  className={`w-full rounded-2xl px-4 py-3 text-left text-sm transition ${
-                    isActive ? "bg-indigo-600 text-white" : "bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+                  className={`group flex items-center justify-between gap-3 rounded-2xl px-4 py-3 transition ${
+                    isActive
+                      ? "bg-indigo-600 text-white"
+                      : theme === "dark"
+                      ? "bg-zinc-900 text-zinc-300 hover:bg-zinc-800"
+                      : "bg-white text-slate-900 hover:bg-slate-200"
                   }`}
                   onClick={() => setSelectedChatId(chat.id)}
                 >
-                  <div className="truncate font-medium">{chat.title || "Untitled chat"}</div>
-                  <div className="mt-1 text-xs text-zinc-500">{new Date(chat.createdAt).toLocaleString()}</div>
-                </button>
+                  <div className="min-w-0">
+                    <div className="truncate font-medium">{chat.title || "Untitled chat"}</div>
+                    <div className={`mt-1 text-xs ${theme === "dark" ? "text-zinc-500" : "text-slate-500"}`}>
+                      {new Date(chat.createdAt).toLocaleString()}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className="rounded-full border border-transparent bg-red-500/10 px-2 py-1 text-xs text-red-300 opacity-0 transition group-hover:opacity-100 hover:border-red-500 hover:bg-red-500/20"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteChat(chat.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               );
             })
           )}
@@ -190,40 +250,58 @@ const DashBoard = () => {
       </aside>
 
       <main className="col-span-4 p-6 flex flex-col gap-4">
-        <div className="rounded-3xl bg-zinc-950 p-6 shadow-xl shadow-black/20 overflow-auto flex-1">
+        <div
+          className={`rounded-3xl p-6 shadow-xl shadow-black/20 overflow-auto flex-1 transition-colors duration-200 ${
+            theme === "dark" ? "bg-zinc-950" : "bg-white"
+          }`}
+        >
           {loading && <p className="text-white">Loading...</p>}
           {error && <p className="text-red-400">{error}</p>}
           {!activeChat && !loading && !error && (
-            <div className="text-zinc-400">Start a new conversation by typing your question below.</div>
+            <div className={theme === "dark" ? "text-zinc-400" : "text-slate-500"}>
+              Start a new conversation by typing your question below.
+            </div>
           )}
 
           {activeChat && (
             <div className="space-y-6">
-                  <div className="space-y-4">
-                    {activeChat.messages.map((message, index) => (
-                      <div
-                        key={index}
-                        className={`rounded-3xl p-5 ${
-                          message.role === "user" ? "bg-zinc-900" : "bg-zinc-800"
-                        }`}
-                      >
-                        <div className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2">
-                          {message.role === "user" ? "You" : "MitraAI"}
-                        </div>
-                        <div className="text-base text-zinc-100 leading-relaxed">
-                          <Results ans={message.text} />
-                        </div>
-                      </div>
-                    ))}
+              <div className="space-y-4">
+                {activeChat.messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={`rounded-3xl p-5 ${
+                      message.role === "user"
+                        ? theme === "dark"
+                          ? "bg-zinc-900"
+                          : "bg-slate-100"
+                        : theme === "dark"
+                        ? "bg-zinc-800"
+                        : "bg-slate-200"
+                    }`}
+                  >
+                    <div className={`text-xs uppercase tracking-[0.2em] mb-2 ${theme === "dark" ? "text-zinc-500" : "text-slate-500"}`}>
+                      {message.role === "user" ? "You" : "MitraAI"}
+                    </div>
+                    <div className={`text-base leading-relaxed ${theme === "dark" ? "text-zinc-100" : "text-slate-900"}`}>
+                      <Results ans={message.text} />
+                    </div>
                   </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
 
-        <div className="rounded-3xl bg-zinc-900 border border-zinc-800 p-4 flex items-center gap-4">
+        <div className={`rounded-3xl border p-4 flex items-center gap-4 ${
+          theme === "dark" ? "bg-zinc-900 border-zinc-800" : "bg-white border-slate-300"
+        }`}>
           <input
             type="text"
-            className="w-full rounded-full border border-zinc-800 bg-zinc-950 px-4 py-3 text-white outline-none focus:border-indigo-500"
+            className={`w-full rounded-full border px-4 py-3 outline-none focus:border-indigo-500 ${
+              theme === "dark"
+                ? "border-zinc-800 bg-zinc-950 text-white"
+                : "border-slate-300 bg-slate-100 text-slate-900"
+            }`}
             placeholder="Ask anything"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
