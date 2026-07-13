@@ -1,13 +1,12 @@
-
-import './App.css'
+import "./App.css";
+import DashBoard from "./Components/DashBoard";
 
 function App() {
-
   return (
     <>
-     <h1>Welcome to Vite + React</h1>
+      <DashBoard />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
