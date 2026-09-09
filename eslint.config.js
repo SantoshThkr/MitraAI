@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'dist-server']),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     extends: [
@@ -19,7 +19,18 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        projectService: { allowDefaultProject: ['eslint.config.js'] },
+        projectService: {
+          allowDefaultProject: ["eslint.config.js"],
+        },
+      },
+    },
+  },
+  {
+    files: ["server/**/*.ts"],
+    languageOptions: {
+      parserOptions: {
+        projectService: false,
+        project: "./tsconfig.server.json",
       },
     },
   },
