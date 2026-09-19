@@ -1,0 +1,104 @@
+{
+  "eslint.config.js": {
+    "mtime": 1788941175.2295246,
+    "seen": 1789795128.925217,
+    "ast_hash": "2251f4614991588554533875bddd2b7f",
+    "semantic_hash": "2251f4614991588554533875bddd2b7f"
+  },
+  "package.json": {
+    "mtime": 1788941036.9806402,
+    "seen": 1789795128.925219,
+    "ast_hash": "5a37824e4497ea08b5fd9065fbe5f577",
+    "semantic_hash": "5a37824e4497ea08b5fd9065fbe5f577"
+  },
+  "server/src/index.ts": {
+    "mtime": 1788941035.7977228,
+    "seen": 1789795128.9252212,
+    "ast_hash": "668e7f847b53c0c253d0ef733a8b2422",
+    "semantic_hash": "668e7f847b53c0c253d0ef733a8b2422"
+  },
+  "src/App.tsx": {
+    "mtime": 1788940568.6369903,
+    "seen": 1789795128.9252212,
+    "ast_hash": "53523f5fd19bb896c4e44610b353effb",
+    "semantic_hash": "53523f5fd19bb896c4e44610b353effb"
+  },
+  "src/components/Results.tsx": {
+    "mtime": 1788940566.9187467,
+    "seen": 1789795128.925222,
+    "ast_hash": "955cae1dbc6aa29c67ead43657616959",
+    "semantic_hash": "955cae1dbc6aa29c67ead43657616959"
+  },
+  "src/constants.ts": {
+    "mtime": 1788940570.3047864,
+    "seen": 1789795128.9252229,
+    "ast_hash": "dd14af8223993f9bd29194d286f195fc",
+    "semantic_hash": "dd14af8223993f9bd29194d286f195fc"
+  },
+  "src/features/chat/Dashboard.tsx": {
+    "mtime": 1788940612.3814785,
+    "seen": 1789795128.9252229,
+    "ast_hash": "b4d338176731a5b0729fe7852d405f6c",
+    "semantic_hash": "b4d338176731a5b0729fe7852d405f6c"
+  },
+  "src/hooks/useLocalStorage.ts": {
+    "mtime": 1788940571.0326855,
+    "seen": 1789795128.9252238,
+    "ast_hash": "79384fa0f37c07a3c220151fd4c1039c",
+    "semantic_hash": "79384fa0f37c07a3c220151fd4c1039c"
+  },
+  "src/main.tsx": {
+    "mtime": 1788940569.4335737,
+    "seen": 1789795128.9252238,
+    "ast_hash": "da90bf425e0062e1c1e41d64695da631",
+    "semantic_hash": "da90bf425e0062e1c1e41d64695da631"
+  },
+  "src/services/geminiService.ts": {
+    "mtime": 1788940571.40157,
+    "seen": 1789795128.925225,
+    "ast_hash": "1247b177b9bea117c47afc1f51ae3896",
+    "semantic_hash": "1247b177b9bea117c47afc1f51ae3896"
+  },
+  "src/types/chat.ts": {
+    "mtime": 1788940570.6611362,
+    "seen": 1789795128.925226,
+    "ast_hash": "a7d3c643dc7a3539f0d8676715404a0a",
+    "semantic_hash": "a7d3c643dc7a3539f0d8676715404a0a"
+  },
+  "src/utils/chat.ts": {
+    "mtime": 1788940571.8192046,
+    "seen": 1789795128.925226,
+    "ast_hash": "bc4046e712bc09dbb40d7daa927ccc16",
+    "semantic_hash": "bc4046e712bc09dbb40d7daa927ccc16"
+  },
+  "src/vite-env.d.ts": {
+    "mtime": 1788940572.2825484,
+    "seen": 1789795128.925227,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "tsconfig.json": {
+    "mtime": 1788940572.6910324,
+    "seen": 1789795128.925227,
+    "ast_hash": "d01228955b739b81b36922024e414840",
+    "semantic_hash": "d01228955b739b81b36922024e414840"
+  },
+  "tsconfig.node.json": {
+    "mtime": 1788940573.0336635,
+    "seen": 1789795128.925228,
+    "ast_hash": "a995f8bbc6e7ae007f9f1f890457c782",
+    "semantic_hash": "a995f8bbc6e7ae007f9f1f890457c782"
+  },
+  "tsconfig.server.json": {
+    "mtime": 1788941036.6136305,
+    "seen": 1789795128.925229,
+    "ast_hash": "096e6177f75f9a694b393b5b6aa6bef5",
+    "semantic_hash": "096e6177f75f9a694b393b5b6aa6bef5"
+  },
+  "vite.config.js": {
+    "mtime": 1783907947.2371695,
+    "seen": 1789795128.925229,
+    "ast_hash": "5b641ab5f85eff4b0b9acec3417ca9b5",
+    "semantic_hash": "5b641ab5f85eff4b0b9acec3417ca9b5"
+  }
+}

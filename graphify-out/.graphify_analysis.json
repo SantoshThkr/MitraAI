@@ -1,0 +1,311 @@
+{
+  "communities": {
+    "0": [
+      "ref_react",
+      "src_components_results",
+      "src_components_results_results",
+      "src_components_results_resultsprops",
+      "src_constants",
+      "src_constants_chat_storage_key",
+      "src_constants_gemini_api_url",
+      "src_constants_selected_chat_storage_key",
+      "src_constants_theme_storage_key",
+      "src_features_chat_dashboard",
+      "src_features_chat_dashboard_dashboard",
+      "src_hooks_uselocalstorage",
+      "src_hooks_uselocalstorage_storedvalueparser",
+      "src_hooks_uselocalstorage_uselocalstorage",
+      "src_services_geminiservice",
+      "src_services_geminiservice_askgemini",
+      "src_services_geminiservice_geminiresponse",
+      "src_types_chat",
+      "src_types_chat_chat",
+      "src_types_chat_message",
+      "src_types_chat_messagerole",
+      "src_types_chat_theme",
+      "src_utils_chat",
+      "src_utils_chat_createchat",
+      "src_utils_chat_isrecord",
+      "src_utils_chat_normalizechat",
+      "src_utils_chat_normalizechats",
+      "src_utils_chat_tomessage"
+    ],
+    "1": [
+      "eslint_config",
+      "package",
+      "package_name",
+      "package_private",
+      "package_type",
+      "package_version",
+      "ref_eslint",
+      "ref_eslint_js",
+      "ref_eslint_plugin_react_hooks",
+      "ref_eslint_plugin_react_refresh",
+      "ref_globals",
+      "ref_tailwindcss",
+      "ref_tailwindcss_vite",
+      "ref_tsx",
+      "ref_types_node",
+      "ref_types_react",
+      "ref_types_react_dom",
+      "ref_typescript",
+      "ref_typescript_eslint",
+      "ref_vite",
+      "ref_vitejs_plugin_react",
+      "vite_config"
+    ],
+    "2": [
+      "tsconfig",
+      "tsconfig_compileroptions",
+      "tsconfig_compileroptions_allowjs",
+      "tsconfig_compileroptions_allowsyntheticdefaultimports",
+      "tsconfig_compileroptions_esmoduleinterop",
+      "tsconfig_compileroptions_forceconsistentcasinginfilenames",
+      "tsconfig_compileroptions_isolatedmodules",
+      "tsconfig_compileroptions_jsx",
+      "tsconfig_compileroptions_lib",
+      "tsconfig_compileroptions_module",
+      "tsconfig_compileroptions_moduleresolution",
+      "tsconfig_compileroptions_noemit",
+      "tsconfig_compileroptions_resolvejsonmodule",
+      "tsconfig_compileroptions_skiplibcheck",
+      "tsconfig_compileroptions_strict",
+      "tsconfig_compileroptions_target",
+      "tsconfig_compileroptions_usedefineforclassfields",
+      "tsconfig_include"
+    ],
+    "3": [
+      "tsconfig_server",
+      "tsconfig_server_compileroptions",
+      "tsconfig_server_compileroptions_declaration",
+      "tsconfig_server_compileroptions_esmoduleinterop",
+      "tsconfig_server_compileroptions_forceconsistentcasinginfilenames",
+      "tsconfig_server_compileroptions_lib",
+      "tsconfig_server_compileroptions_module",
+      "tsconfig_server_compileroptions_moduleresolution",
+      "tsconfig_server_compileroptions_outdir",
+      "tsconfig_server_compileroptions_rootdir",
+      "tsconfig_server_compileroptions_skiplibcheck",
+      "tsconfig_server_compileroptions_sourcemap",
+      "tsconfig_server_compileroptions_strict",
+      "tsconfig_server_compileroptions_target",
+      "tsconfig_server_include"
+    ],
+    "4": [
+      "package_devdependencies",
+      "package_devdependencies_eslint",
+      "package_devdependencies_eslint_js",
+      "package_devdependencies_eslint_plugin_react_hooks",
+      "package_devdependencies_eslint_plugin_react_refresh",
+      "package_devdependencies_globals",
+      "package_devdependencies_tsx",
+      "package_devdependencies_types_node",
+      "package_devdependencies_types_react",
+      "package_devdependencies_types_react_dom",
+      "package_devdependencies_typescript",
+      "package_devdependencies_typescript_eslint",
+      "package_devdependencies_vite",
+      "package_devdependencies_vitejs_plugin_react"
+    ],
+    "5": [
+      "ref_dotenv",
+      "ref_fastify",
+      "ref_fastify_cors",
+      "ref_react_dom",
+      "ref_zod",
+      "server_src_index",
+      "server_src_index_buildserver",
+      "server_src_index_environment",
+      "server_src_index_environmentschema",
+      "server_src_index_startserver",
+      "src_app",
+      "src_app_app",
+      "src_main",
+      "src_main_rootelement"
+    ],
+    "6": [
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_build_server",
+      "package_scripts_dev",
+      "package_scripts_dev_server",
+      "package_scripts_lint",
+      "package_scripts_lint_server",
+      "package_scripts_preview",
+      "package_scripts_start_server",
+      "package_scripts_typecheck",
+      "package_scripts_typecheck_server"
+    ],
+    "7": [
+      "package_dependencies",
+      "package_dependencies_dotenv",
+      "package_dependencies_fastify",
+      "package_dependencies_fastify_cors",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "package_dependencies_tailwindcss",
+      "package_dependencies_tailwindcss_vite",
+      "package_dependencies_zod"
+    ],
+    "8": [
+      "tsconfig_node",
+      "tsconfig_node_compileroptions",
+      "tsconfig_node_compileroptions_allowsyntheticdefaultimports",
+      "tsconfig_node_compileroptions_composite",
+      "tsconfig_node_compileroptions_module",
+      "tsconfig_node_compileroptions_moduleresolution",
+      "tsconfig_node_compileroptions_skiplibcheck",
+      "tsconfig_node_include"
+    ],
+    "9": [
+      "src_vite_env_d"
+    ]
+  },
+  "cohesion": {
+    "0": 0.13756613756613756,
+    "1": 0.12121212121212122,
+    "2": 0.1111111111111111,
+    "3": 0.13333333333333333,
+    "4": 0.14285714285714285,
+    "5": 0.16483516483516483,
+    "6": 0.18181818181818182,
+    "7": 0.2222222222222222,
+    "8": 0.25,
+    "9": 1.0
+  },
+  "gods": [
+    {
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "tsconfig_server_compileroptions",
+      "label": "compilerOptions",
+      "degree": 13
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 11
+    },
+    {
+      "id": "src_features_chat_dashboard_dashboard",
+      "label": "Dashboard()",
+      "degree": 6
+    },
+    {
+      "id": "tsconfig_node_compileroptions",
+      "label": "compilerOptions",
+      "degree": 6
+    },
+    {
+      "id": "src_utils_chat_normalizechat",
+      "label": "normalizeChat()",
+      "degree": 4
+    },
+    {
+      "id": "src_utils_chat_normalizechats",
+      "label": "normalizeChats()",
+      "degree": 4
+    },
+    {
+      "id": "ref_react",
+      "label": "react",
+      "degree": 4
+    },
+    {
+      "id": "src_types_chat_chat",
+      "label": "Chat",
+      "degree": 3
+    },
+    {
+      "id": "src_types_chat_message",
+      "label": "Message",
+      "degree": 3
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Dashboard()",
+      "target": "normalizeChats()",
+      "source_files": [
+        "src/features/chat/Dashboard.tsx",
+        "src/utils/chat.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "indirect_call",
+      "why": "inferred connection - not explicitly stated in source"
+    },
+    {
+      "source": "Dashboard()",
+      "target": "useLocalStorage()",
+      "source_files": [
+        "src/features/chat/Dashboard.tsx",
+        "src/hooks/useLocalStorage.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "Dashboard()",
+      "target": "askGemini()",
+      "source_files": [
+        "src/features/chat/Dashboard.tsx",
+        "src/services/geminiService.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "Dashboard()",
+      "target": "createChat()",
+      "source_files": [
+        "src/features/chat/Dashboard.tsx",
+        "src/utils/chat.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `react` connect `Dashboard.tsx` to `package.json`, `index.ts`?",
+      "why": "High betweenness centrality (0.193) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `devDependencies` connect `devDependencies` to `package.json`?",
+      "why": "High betweenness centrality (0.122) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `scripts` connect `scripts` to `package.json`?",
+      "why": "High betweenness centrality (0.095) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `ResultsProps`, `StoredValueParser`, `GeminiResponse` to the rest of the system?",
+      "why": "83 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Dashboard.tsx` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13756613756613756 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `package.json` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12121212121212122 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `compilerOptions` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

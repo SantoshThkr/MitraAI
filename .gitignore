@@ -27,3 +27,8 @@ dist-server
 *.njsproj
 *.sln
 *.sw?
+
+# Graphify generated files
+.claude/settings.json.graphify-bak
+graphify-out/cache/
+graphify-out/*/
