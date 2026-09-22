@@ -3,12 +3,12 @@
 ## Project context
 
 - Frontend: React + Vite + TypeScript
-- Backend: Node.js + Fastify + TypeScript
-- Database: PostgreSQL + Prisma
+- Backend: Python + FastAPI
+- Database: PostgreSQL + SQLAlchemy + Alembic
 - Vector search: pgvector
 - Local AI: Ollama
 - Embeddings: local embedding model
-- Testing: Vitest
+- Testing: Vitest (frontend), pytest (backend)
 - Infrastructure: Docker Compose
 
 Use technologies from this stack only when the current task requires them. Do not add LangChain, LlamaIndex, Redis, Pinecone, microservices, Kubernetes, or other infrastructure unless explicitly requested.
