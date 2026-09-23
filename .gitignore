@@ -38,3 +38,6 @@ __pycache__/
 *.pyc
 .pytest_cache/
 backend/var/
+
+# Graphify local output
+graphify-out/
