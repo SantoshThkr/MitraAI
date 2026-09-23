@@ -36,11 +36,12 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
   const messages =
     loadedMessages && loadedMessages.chatId === currentChatId ? loadedMessages.items : [];
 
+  // Ignores messages for a chat the user has already navigated away from.
   const appendMessage = (chatId: string, message: Message) =>
     setLoadedMessages((previous) =>
       previous && previous.chatId === chatId
         ? { chatId, items: [...previous.items, message] }
-        : { chatId, items: [message] },
+        : previous,
     );
 
   useEffect(() => {
@@ -124,6 +125,7 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
         chat = await api.createChat(trimmedQuery.slice(0, 40));
         setChats((previousChats) => [chat as Chat, ...previousChats]);
         setSelectedChatId(chat.id);
+        setLoadedMessages({ chatId: chat.id, items: [] });
       }
 
       const chatId = chat.id;

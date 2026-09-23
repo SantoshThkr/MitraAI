@@ -40,7 +40,7 @@
       "file_type": "code",
       "norm_label": "dashboardprops",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L9"
+      "source_location": "L8"
     },
     {
       "id": "src_features_chat_dashboard_loadedmessages",
@@ -53,7 +53,33 @@
       "file_type": "code",
       "norm_label": "loadedmessages",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L14"
+      "source_location": "L13"
+    },
+    {
+      "id": "src_services_api_chatstreamevent",
+      "label": "ChatStreamEvent",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "api.ts",
+      "file_type": "code",
+      "norm_label": "chatstreamevent",
+      "source_file": "src/services/api.ts",
+      "source_location": "L110"
+    },
+    {
+      "id": "src_services_api_chatstreamhandlers",
+      "label": "ChatStreamHandlers",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "api.ts",
+      "file_type": "code",
+      "norm_label": "chatstreamhandlers",
+      "source_file": "src/services/api.ts",
+      "source_location": "L116"
     },
     {
       "id": "src_services_api_conversationpayload",
@@ -92,19 +118,6 @@
       "file_type": "code",
       "norm_label": "userpayload",
       "source_file": "src/services/api.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "src_services_geminiservice_geminiresponse",
-      "label": "GeminiResponse",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "geminiresponse",
-      "source_file": "src/services/geminiService.ts",
       "source_location": "L3"
     },
     {
@@ -238,17 +251,17 @@
       "source_location": "L23"
     },
     {
-      "id": "backend_app_db_models_usersession",
-      "label": "UserSession",
+      "id": "backend_app_schemas_chatrequest",
+      "label": "ChatRequest",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
+      "community": 5,
+      "community_name": "conversations.py",
       "file_type": "code",
-      "norm_label": "usersession",
-      "source_file": "backend/app/db/models.py",
-      "source_location": "L41"
+      "norm_label": "chatrequest",
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L59"
     },
     {
       "id": "backend_app_schemas_conversationcreate",
@@ -290,6 +303,19 @@
       "source_location": "L41"
     },
     {
+      "id": "backend_app_schemas_loginrequest",
+      "label": "LoginRequest",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "loginrequest",
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L23"
+    },
+    {
       "id": "backend_app_schemas_messagecreate",
       "label": "MessageCreate",
       "_callable": true,
@@ -313,20 +339,7 @@
       "file_type": "code",
       "norm_label": "messageresponse",
       "source_file": "backend/app/schemas.py",
-      "source_location": "L59"
-    },
-    {
-      "id": "backend_app_schemas_loginrequest",
-      "label": "LoginRequest",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "loginrequest",
-      "source_file": "backend/app/schemas.py",
-      "source_location": "L23"
+      "source_location": "L63"
     },
     {
       "id": "backend_app_schemas_signuprequest",
@@ -334,8 +347,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
+      "community": 5,
+      "community_name": "conversations.py",
       "file_type": "code",
       "norm_label": "signuprequest",
       "source_file": "backend/app/schemas.py",
@@ -347,12 +360,25 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
+      "community": 5,
+      "community_name": "conversations.py",
       "file_type": "code",
       "norm_label": "userresponse",
       "source_file": "backend/app/schemas.py",
       "source_location": "L28"
+    },
+    {
+      "id": "backend_app_ollama_ollamaerror",
+      "label": "OllamaError",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "ollamaerror",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L14"
     },
     {
       "id": "backend_app_core_config_settings",
@@ -361,11 +387,24 @@
       "_callable_class": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "settings",
       "source_file": "backend/app/core/config.py",
       "source_location": "L4"
+    },
+    {
+      "id": "backend_app_db_models_usersession",
+      "label": "UserSession",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "usersession",
+      "source_file": "backend/app/db/models.py",
+      "source_location": "L41"
     },
     {
       "id": "src_app_app",
@@ -413,7 +452,7 @@
       "file_type": "code",
       "norm_label": "dashboard()",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L22"
+      "source_location": "L21"
     },
     {
       "id": "src_features_chat_dashboard_toerrormessage",
@@ -425,7 +464,7 @@
       "file_type": "code",
       "norm_label": "toerrormessage()",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L19"
+      "source_location": "L18"
     },
     {
       "id": "src_hooks_uselocalstorage_uselocalstorage",
@@ -450,18 +489,6 @@
       "norm_label": "createchat()",
       "source_file": "src/services/api.ts",
       "source_location": "L88"
-    },
-    {
-      "id": "src_services_api_createmessage",
-      "label": "createMessage()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "createmessage()",
-      "source_file": "src/services/api.ts",
-      "source_location": "L110"
     },
     {
       "id": "src_services_api_deletechat",
@@ -572,6 +599,18 @@
       "source_location": "L59"
     },
     {
+      "id": "src_services_api_streamchat",
+      "label": "streamChat()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "api.ts",
+      "file_type": "code",
+      "norm_label": "streamchat()",
+      "source_file": "src/services/api.ts",
+      "source_location": "L122"
+    },
+    {
       "id": "src_services_api_tochat",
       "label": "toChat()",
       "_callable": true,
@@ -606,18 +645,6 @@
       "norm_label": "touser()",
       "source_file": "src/services/api.ts",
       "source_location": "L41"
-    },
-    {
-      "id": "src_services_geminiservice_askgemini",
-      "label": "askGemini()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "askgemini()",
-      "source_file": "src/services/geminiService.ts",
-      "source_location": "L13"
     },
     {
       "id": "backend_tests_test_auth_test_duplicate_signup_is_rejected",
@@ -836,6 +863,126 @@
       "source_location": "L49"
     },
     {
+      "id": "backend_tests_conftest_client",
+      "label": "client()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "client()",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L32"
+    },
+    {
+      "id": "backend_tests_conftest_database",
+      "label": "database()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "database()",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "backend_tests_conftest_database_reset",
+      "label": "reset()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "reset()",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "backend_tests_conftest_signed_up",
+      "label": "signed_up()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "signed_up()",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L38"
+    },
+    {
+      "id": "backend_tests_test_health_test_health_allows_frontend_origin",
+      "label": "test_health_allows_frontend_origin()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "test_health_allows_frontend_origin()",
+      "source_file": "backend/tests/test_health.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "backend_tests_test_health_test_health_returns_ok",
+      "label": "test_health_returns_ok()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "test_health_returns_ok()",
+      "source_file": "backend/tests/test_health.py",
+      "source_location": "L7"
+    },
+    {
+      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions_downgrade",
+      "label": "downgrade()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "downgrade()",
+      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions_upgrade",
+      "label": "upgrade()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "upgrade()",
+      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages_downgrade",
+      "label": "downgrade()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "downgrade()",
+      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
+      "source_location": "L53"
+    },
+    {
+      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages_upgrade",
+      "label": "upgrade()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "upgrade()",
+      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
+      "source_location": "L20"
+    },
+    {
       "id": "backend_alembic_env_do_run_migrations",
       "label": "do_run_migrations()",
       "_callable": true,
@@ -872,52 +1019,16 @@
       "source_location": "L39"
     },
     {
-      "id": "backend_tests_conftest_client",
-      "label": "client()",
+      "id": "backend_app_api_auth_me",
+      "label": "me()",
       "_callable": true,
       "_origin": "ast",
       "community": 3,
       "community_name": "models.py",
       "file_type": "code",
-      "norm_label": "client()",
-      "source_file": "backend/tests/conftest.py",
-      "source_location": "L32"
-    },
-    {
-      "id": "backend_tests_conftest_database",
-      "label": "database()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "database()",
-      "source_file": "backend/tests/conftest.py",
-      "source_location": "L19"
-    },
-    {
-      "id": "backend_tests_conftest_database_reset",
-      "label": "reset()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "reset()",
-      "source_file": "backend/tests/conftest.py",
-      "source_location": "L20"
-    },
-    {
-      "id": "backend_tests_conftest_signed_up",
-      "label": "signed_up()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "signed_up()",
-      "source_file": "backend/tests/conftest.py",
-      "source_location": "L38"
+      "norm_label": "me()",
+      "source_file": "backend/app/api/auth.py",
+      "source_location": "L81"
     },
     {
       "id": "backend_tests_test_models_test_conversation_belongs_to_user",
@@ -956,52 +1067,28 @@
       "source_location": "L18"
     },
     {
-      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions_downgrade",
-      "label": "downgrade()",
+      "id": "backend_app_api_conversations_chat",
+      "label": "chat()",
       "_callable": true,
       "_origin": "ast",
       "community": 5,
       "community_name": "conversations.py",
       "file_type": "code",
-      "norm_label": "downgrade()",
-      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
-      "source_location": "L36"
+      "norm_label": "chat()",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L110"
     },
     {
-      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions_upgrade",
-      "label": "upgrade()",
+      "id": "backend_app_api_conversations_chat_events",
+      "label": "events()",
       "_callable": true,
       "_origin": "ast",
       "community": 5,
       "community_name": "conversations.py",
       "file_type": "code",
-      "norm_label": "upgrade()",
-      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
-      "source_location": "L20"
-    },
-    {
-      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages_downgrade",
-      "label": "downgrade()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "conversations.py",
-      "file_type": "code",
-      "norm_label": "downgrade()",
-      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
-      "source_location": "L53"
-    },
-    {
-      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages_upgrade",
-      "label": "upgrade()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "conversations.py",
-      "file_type": "code",
-      "norm_label": "upgrade()",
-      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
-      "source_location": "L20"
+      "norm_label": "events()",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L132"
     },
     {
       "id": "backend_app_api_conversations_create_conversation",
@@ -1013,7 +1100,7 @@
       "file_type": "code",
       "norm_label": "create_conversation()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L28"
+      "source_location": "L36"
     },
     {
       "id": "backend_app_api_conversations_create_message",
@@ -1025,7 +1112,7 @@
       "file_type": "code",
       "norm_label": "create_message()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L81"
+      "source_location": "L89"
     },
     {
       "id": "backend_app_api_conversations_delete_conversation",
@@ -1037,7 +1124,19 @@
       "file_type": "code",
       "norm_label": "delete_conversation()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L54"
+      "source_location": "L62"
+    },
+    {
+      "id": "backend_app_api_conversations_event",
+      "label": "_event()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "_event()",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L101"
     },
     {
       "id": "backend_app_api_conversations_get_conversation",
@@ -1049,7 +1148,7 @@
       "file_type": "code",
       "norm_label": "get_conversation()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L39"
+      "source_location": "L47"
     },
     {
       "id": "backend_app_api_conversations_list_conversations",
@@ -1061,7 +1160,7 @@
       "file_type": "code",
       "norm_label": "list_conversations()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L18"
+      "source_location": "L26"
     },
     {
       "id": "backend_app_api_conversations_list_messages",
@@ -1073,7 +1172,19 @@
       "file_type": "code",
       "norm_label": "list_messages()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L60"
+      "source_location": "L68"
+    },
+    {
+      "id": "backend_app_api_conversations_serialize",
+      "label": "_serialize()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "_serialize()",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L105"
     },
     {
       "id": "backend_app_api_conversations_update_conversation",
@@ -1085,14 +1196,182 @@
       "file_type": "code",
       "norm_label": "update_conversation()",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L44"
+      "source_location": "L52"
+    },
+    {
+      "id": "backend_app_ollama_stream_chat",
+      "label": "stream_chat()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "stream_chat()",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "backend_app_schemas_signuprequest_password_fits_bcrypt",
+      "label": ".password_fits_bcrypt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": ".password_fits_bcrypt()",
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "backend_tests_test_chat_failing_ollama",
+      "label": "failing_ollama()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "failing_ollama()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L34"
+    },
+    {
+      "id": "backend_tests_test_chat_failing_ollama_fake_stream",
+      "label": "fake_stream()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "fake_stream()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L35"
+    },
+    {
+      "id": "backend_tests_test_chat_fake_ollama",
+      "label": "fake_ollama()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "fake_ollama()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L20"
+    },
+    {
+      "id": "backend_tests_test_chat_fake_ollama_fake_stream",
+      "label": "fake_stream()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "fake_stream()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L24"
+    },
+    {
+      "id": "backend_tests_test_chat_new_conversation",
+      "label": "new_conversation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "new_conversation()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L42"
+    },
+    {
+      "id": "backend_tests_test_chat_parse_events",
+      "label": "parse_events()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "parse_events()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L11"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_rejects_empty_content",
+      "label": "test_chat_rejects_empty_content()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_rejects_empty_content()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L144"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_rejects_other_users_conversation",
+      "label": "test_chat_rejects_other_users_conversation()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_rejects_other_users_conversation()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L55"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_reports_provider_failure_without_leaking_details",
+      "label": "test_chat_reports_provider_failure_without_leaking_details()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_reports_provider_failure_without_leaking_details()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L128"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_requires_authentication",
+      "label": "test_chat_requires_authentication()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_requires_authentication()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L46"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_sends_bounded_context",
+      "label": "test_chat_sends_bounded_context()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_sends_bounded_context()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L108"
+    },
+    {
+      "id": "backend_tests_test_chat_test_chat_streams_and_persists_both_messages",
+      "label": "test_chat_streams_and_persists_both_messages()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat_streams_and_persists_both_messages()",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L78"
     },
     {
       "id": "backend_app_api_auth_login",
       "label": "login()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "login()",
@@ -1104,7 +1383,7 @@
       "label": "logout()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "logout()",
@@ -1112,23 +1391,11 @@
       "source_location": "L67"
     },
     {
-      "id": "backend_app_api_auth_me",
-      "label": "me()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "me()",
-      "source_file": "backend/app/api/auth.py",
-      "source_location": "L81"
-    },
-    {
       "id": "backend_app_api_auth_signup",
       "label": "signup()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "signup()",
@@ -1140,7 +1407,7 @@
       "label": "_start_session()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "_start_session()",
@@ -1148,72 +1415,12 @@
       "source_location": "L20"
     },
     {
-      "id": "backend_app_core_security_generate_session_token",
-      "label": "generate_session_token()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "generate_session_token()",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L17"
-    },
-    {
-      "id": "backend_app_core_security_hash_password",
-      "label": "hash_password()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "hash_password()",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L9"
-    },
-    {
-      "id": "backend_app_core_security_hash_session_token",
-      "label": "hash_session_token()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "hash_session_token()",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L21"
-    },
-    {
-      "id": "backend_app_core_security_verify_password",
-      "label": "verify_password()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "verify_password()",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L13"
-    },
-    {
-      "id": "backend_app_schemas_signuprequest_password_fits_bcrypt",
-      "label": ".password_fits_bcrypt()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": ".password_fits_bcrypt()",
-      "source_file": "backend/app/schemas.py",
-      "source_location": "L17"
-    },
-    {
       "id": "backend_app_api_deps_get_current_user",
       "label": "get_current_user()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "get_current_user()",
       "source_file": "backend/app/api/deps.py",
@@ -1225,11 +1432,59 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "get_owned_conversation()",
       "source_file": "backend/app/api/deps.py",
       "source_location": "L37"
+    },
+    {
+      "id": "backend_app_core_security_generate_session_token",
+      "label": "generate_session_token()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "generate_session_token()",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "backend_app_core_security_hash_password",
+      "label": "hash_password()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "hash_password()",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L9"
+    },
+    {
+      "id": "backend_app_core_security_hash_session_token",
+      "label": "hash_session_token()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "hash_session_token()",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L21"
+    },
+    {
+      "id": "backend_app_core_security_verify_password",
+      "label": "verify_password()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "verify_password()",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L13"
     },
     {
       "id": "backend_app_db_session_get_session",
@@ -1237,7 +1492,7 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "get_session()",
       "source_file": "backend/app/db/session.py",
@@ -1249,35 +1504,11 @@
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "health()",
       "source_file": "backend/app/main.py",
       "source_location": "L22"
-    },
-    {
-      "id": "backend_tests_test_health_test_health_allows_frontend_origin",
-      "label": "test_health_allows_frontend_origin()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "deps.py",
-      "file_type": "code",
-      "norm_label": "test_health_allows_frontend_origin()",
-      "source_file": "backend/tests/test_health.py",
-      "source_location": "L15"
-    },
-    {
-      "id": "backend_tests_test_health_test_health_returns_ok",
-      "label": "test_health_returns_ok()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "deps.py",
-      "file_type": "code",
-      "norm_label": "test_health_returns_ok()",
-      "source_file": "backend/tests/test_health.py",
-      "source_location": "L7"
     },
     {
       "id": "src_app",
@@ -1313,17 +1544,6 @@
       "source_location": "L1"
     },
     {
-      "id": "src_constants_gemini_api_url",
-      "label": "GEMINI_API_URL",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "gemini_api_url",
-      "source_file": "src/constants.ts",
-      "source_location": "L1"
-    },
-    {
       "id": "src_constants_theme_storage_key",
       "label": "THEME_STORAGE_KEY",
       "_origin": "ast",
@@ -1332,7 +1552,7 @@
       "file_type": "code",
       "norm_label": "theme_storage_key",
       "source_file": "src/constants.ts",
-      "source_location": "L3"
+      "source_location": "L1"
     },
     {
       "id": "src_features_auth_authform",
@@ -1398,17 +1618,6 @@
       "file_type": "code",
       "norm_label": "api.ts",
       "source_file": "src/services/api.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "src_services_geminiservice",
-      "label": "geminiService.ts",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "api.ts",
-      "file_type": "code",
-      "norm_label": "geminiservice.ts",
-      "source_file": "src/services/geminiService.ts",
       "source_location": "L1"
     },
     {
@@ -2637,6 +2846,72 @@
       "source_location": "L1"
     },
     {
+      "id": "backend_tests_conftest",
+      "label": "conftest.py",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "conftest.py",
+      "source_file": "backend/tests/conftest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_tests_conftest_py_fixture",
+      "label": "fixture",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "fixture",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_tests_conftest_py_testclient",
+      "label": "TestClient",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "testclient",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_tests_test_health",
+      "label": "test_health.py",
+      "_origin": "ast",
+      "community": 27,
+      "community_name": "conftest.py",
+      "file_type": "code",
+      "norm_label": "test_health.py",
+      "source_file": "backend/tests/test_health.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions",
+      "label": "408ef2738c0c_add_password_hash_and_sessions.py",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "408ef2738c0c_add_password_hash_and_sessions.py",
+      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages",
+      "label": "d599c4cba706_create_users_conversations_messages.py",
+      "_origin": "ast",
+      "community": 28,
+      "community_name": "collections_abc",
+      "file_type": "code",
+      "norm_label": "d599c4cba706_create_users_conversations_messages.py",
+      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
+      "source_location": "L1"
+    },
+    {
       "id": "backend_alembic_env",
       "label": "env.py",
       "_origin": "ast",
@@ -2646,6 +2921,28 @@
       "norm_label": "env.py",
       "source_file": "backend/alembic/env.py",
       "source_location": "L1"
+    },
+    {
+      "id": "backend_app_api_auth_py_currentuser",
+      "label": "CurrentUser",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "models.py",
+      "file_type": "code",
+      "norm_label": "currentuser",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_app_api_auth_py_get",
+      "label": "get",
+      "_origin": "ast",
+      "community": 3,
+      "community_name": "models.py",
+      "file_type": "code",
+      "norm_label": "get",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "backend_app_db_base",
@@ -2681,28 +2978,6 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_tests_conftest",
-      "label": "conftest.py",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "conftest.py",
-      "source_file": "backend/tests/conftest.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "backend_tests_conftest_py_testclient",
-      "label": "TestClient",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "testclient",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "backend_tests_test_models",
       "label": "test_models.py",
       "_origin": "ast",
@@ -2732,17 +3007,6 @@
       "community_name": "models.py",
       "file_type": "code",
       "norm_label": "declarativebase",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "fixture",
-      "label": "fixture",
-      "_origin": "ast",
-      "community": 3,
-      "community_name": "models.py",
-      "file_type": "code",
-      "norm_label": "fixture",
       "source_file": "",
       "source_location": ""
     },
@@ -2879,28 +3143,6 @@
       "source_location": "L23"
     },
     {
-      "id": "backend_alembic_versions_408ef2738c0c_add_password_hash_and_sessions",
-      "label": "408ef2738c0c_add_password_hash_and_sessions.py",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "conversations.py",
-      "file_type": "code",
-      "norm_label": "408ef2738c0c_add_password_hash_and_sessions.py",
-      "source_file": "backend/alembic/versions/408ef2738c0c_add_password_hash_and_sessions.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "backend_alembic_versions_d599c4cba706_create_users_conversations_messages",
-      "label": "d599c4cba706_create_users_conversations_messages.py",
-      "_origin": "ast",
-      "community": 5,
-      "community_name": "conversations.py",
-      "file_type": "code",
-      "norm_label": "d599c4cba706_create_users_conversations_messages.py",
-      "source_file": "backend/alembic/versions/d599c4cba706_create_users_conversations_messages.py",
-      "source_location": "L1"
-    },
-    {
       "id": "backend_app_api_conversations",
       "label": "conversations.py",
       "_origin": "ast",
@@ -2956,6 +3198,17 @@
       "source_location": ""
     },
     {
+      "id": "backend_app_schemas",
+      "label": "schemas.py",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "schemas.py",
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L1"
+    },
+    {
       "id": "basemodel",
       "label": "BaseModel",
       "_origin": "ast",
@@ -2974,6 +3227,17 @@
       "community_name": "conversations.py",
       "file_type": "code",
       "norm_label": "delete",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "field_validator",
+      "label": "field_validator",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "field_validator",
       "source_file": "",
       "source_location": ""
     },
@@ -3000,10 +3264,131 @@
       "source_location": ""
     },
     {
+      "id": "streamingresponse",
+      "label": "StreamingResponse",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "code",
+      "norm_label": "streamingresponse",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_app_ollama_rationale_19",
+      "label": "Yield reply chunks from Ollama as they arrive.",
+      "_origin": "ast",
+      "community": 5,
+      "community_name": "conversations.py",
+      "file_type": "rationale",
+      "norm_label": "yield reply chunks from ollama as they arrive.",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L19"
+    },
+    {
+      "id": "backend_app_ollama",
+      "label": "ollama.py",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "ollama.py",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_tests_test_chat",
+      "label": "test_chat.py",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "test_chat.py",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_tests_test_chat_py_fixture",
+      "label": "fixture",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "fixture",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_tests_test_chat_py_testclient",
+      "label": "TestClient",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "testclient",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "monkeypatch",
+      "label": "MonkeyPatch",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "monkeypatch",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "runtimeerror",
+      "label": "RuntimeError",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "code",
+      "norm_label": "runtimeerror",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "backend_app_ollama_rationale_15",
+      "label": "Raised with a message that is safe to show to the client.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "rationale",
+      "norm_label": "raised with a message that is safe to show to the client.",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L15"
+    },
+    {
+      "id": "backend_tests_test_chat_rationale_21",
+      "label": "Replace the Ollama call with a deterministic token stream.",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "file_type": "rationale",
+      "norm_label": "replace the ollama call with a deterministic token stream.",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L21"
+    },
+    {
+      "id": "asyncsession",
+      "label": "AsyncSession",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "asyncsession",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "backend_app_api_auth",
       "label": "auth.py",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "auth.py",
@@ -3011,32 +3396,10 @@
       "source_location": "L1"
     },
     {
-      "id": "backend_app_api_auth_py_currentuser",
-      "label": "CurrentUser",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "currentuser",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_app_api_auth_py_get",
-      "label": "get",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "get",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "backend_app_api_auth_py_post",
       "label": "post",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "post",
@@ -3047,7 +3410,7 @@
       "id": "backend_app_api_auth_py_request",
       "label": "Request",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "request",
@@ -3058,76 +3421,10 @@
       "id": "backend_app_api_auth_py_sessiondep",
       "label": "SessionDep",
       "_origin": "ast",
-      "community": 6,
+      "community": 7,
       "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "sessiondep",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_app_core_security",
-      "label": "security.py",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "security.py",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "backend_app_schemas",
-      "label": "schemas.py",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "schemas.py",
-      "source_file": "backend/app/schemas.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "field_validator",
-      "label": "field_validator",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "field_validator",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "response",
-      "label": "Response",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "code",
-      "norm_label": "response",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "backend_app_core_security_rationale_22",
-      "label": "Sessions are looked up by digest so a database leak cannot replay cookies.",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "auth.py",
-      "file_type": "rationale",
-      "norm_label": "sessions are looked up by digest so a database leak cannot replay cookies.",
-      "source_file": "backend/app/core/security.py",
-      "source_location": "L22"
-    },
-    {
-      "id": "asyncsession",
-      "label": "AsyncSession",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "deps.py",
-      "file_type": "code",
-      "norm_label": "asyncsession",
       "source_file": "",
       "source_location": ""
     },
@@ -3136,7 +3433,7 @@
       "label": "deps.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "deps.py",
       "source_file": "backend/app/api/deps.py",
@@ -3147,7 +3444,7 @@
       "label": "CurrentUser",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "currentuser",
       "source_file": "",
@@ -3158,7 +3455,7 @@
       "label": "Request",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "request",
       "source_file": "",
@@ -3169,7 +3466,7 @@
       "label": "SessionDep",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "sessiondep",
       "source_file": "",
@@ -3180,7 +3477,7 @@
       "label": "api/__init__.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "api/__init__.py",
       "source_file": "backend/app/api/__init__.py",
@@ -3191,10 +3488,21 @@
       "label": "config.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "config.py",
       "source_file": "backend/app/core/config.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "backend_app_core_security",
+      "label": "security.py",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "security.py",
+      "source_file": "backend/app/core/security.py",
       "source_location": "L1"
     },
     {
@@ -3202,7 +3510,7 @@
       "label": "session.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "session.py",
       "source_file": "backend/app/db/session.py",
@@ -3213,7 +3521,7 @@
       "label": "main.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "main.py",
       "source_file": "backend/app/main.py",
@@ -3224,31 +3532,31 @@
       "label": "get",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "get",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "backend_tests_test_health",
-      "label": "test_health.py",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "deps.py",
-      "file_type": "code",
-      "norm_label": "test_health.py",
-      "source_file": "backend/tests/test_health.py",
-      "source_location": "L1"
-    },
-    {
       "id": "basesettings",
       "label": "BaseSettings",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "basesettings",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "response",
+      "label": "Response",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "code",
+      "norm_label": "response",
       "source_file": "",
       "source_location": ""
     },
@@ -3257,11 +3565,22 @@
       "label": "UUID",
       "_origin": "ast",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "file_type": "code",
       "norm_label": "uuid",
       "source_file": "",
       "source_location": ""
+    },
+    {
+      "id": "backend_app_core_security_rationale_22",
+      "label": "Sessions are looked up by digest so a database leak cannot replay cookies.",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "auth.py",
+      "file_type": "rationale",
+      "norm_label": "sessions are looked up by digest so a database leak cannot replay cookies.",
+      "source_file": "backend/app/core/security.py",
+      "source_location": "L22"
     },
     {
       "id": "claude_skills_graphify_skill",
@@ -3581,6 +3900,7 @@
     {
       "id": "src_index",
       "label": "src_index",
+      "_origin": "semantic",
       "community": 0,
       "community_name": "api.ts",
       "external": true,
@@ -3592,8 +3912,9 @@
     {
       "id": "asyncio",
       "label": "asyncio",
-      "community": 3,
-      "community_name": "models.py",
+      "_origin": "semantic",
+      "community": 27,
+      "community_name": "conftest.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "asyncio",
@@ -3601,21 +3922,23 @@
       "type": "external"
     },
     {
-      "id": "logging_config",
-      "label": "logging_config",
-      "community": 3,
-      "community_name": "models.py",
+      "id": "fastapi_testclient",
+      "label": "fastapi_testclient",
+      "_origin": "semantic",
+      "community": 27,
+      "community_name": "conftest.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "logging_config",
+      "norm_label": "fastapi_testclient",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "os",
       "label": "os",
-      "community": 3,
-      "community_name": "models.py",
+      "_origin": "semantic",
+      "community": 27,
+      "community_name": "conftest.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "os",
@@ -3625,8 +3948,9 @@
     {
       "id": "pytest",
       "label": "pytest",
-      "community": 3,
-      "community_name": "models.py",
+      "_origin": "semantic",
+      "community": 27,
+      "community_name": "conftest.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "pytest",
@@ -3634,8 +3958,69 @@
       "type": "external"
     },
     {
+      "id": "alembic",
+      "label": "alembic",
+      "_origin": "semantic",
+      "community": 28,
+      "community_name": "collections_abc",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "alembic",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "collections_abc",
+      "label": "collections_abc",
+      "_origin": "semantic",
+      "community": 28,
+      "community_name": "collections_abc",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "collections_abc",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "sqlalchemy",
+      "label": "sqlalchemy",
+      "_origin": "semantic",
+      "community": 28,
+      "community_name": "collections_abc",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "sqlalchemy",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "datetime",
+      "label": "datetime",
+      "_origin": "semantic",
+      "community": 3,
+      "community_name": "models.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "datetime",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "logging_config",
+      "label": "logging_config",
+      "_origin": "semantic",
+      "community": 3,
+      "community_name": "models.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "logging_config",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "sqlalchemy_dialects_postgresql",
       "label": "sqlalchemy_dialects_postgresql",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "models.py",
       "external": true,
@@ -3647,6 +4032,7 @@
     {
       "id": "sqlalchemy_engine",
       "label": "sqlalchemy_engine",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "models.py",
       "external": true,
@@ -3658,6 +4044,7 @@
     {
       "id": "sqlalchemy_orm",
       "label": "sqlalchemy_orm",
+      "_origin": "semantic",
       "community": 3,
       "community_name": "models.py",
       "external": true,
@@ -3667,42 +4054,22 @@
       "type": "external"
     },
     {
-      "id": "alembic",
-      "label": "alembic",
+      "id": "pydantic",
+      "label": "pydantic",
+      "_origin": "semantic",
       "community": 5,
       "community_name": "conversations.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "alembic",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "collections_abc",
-      "label": "collections_abc",
-      "community": 5,
-      "community_name": "conversations.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "collections_abc",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "sqlalchemy",
-      "label": "sqlalchemy",
-      "community": 5,
-      "community_name": "conversations.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "sqlalchemy",
+      "norm_label": "pydantic",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "bcrypt",
       "label": "bcrypt",
-      "community": 6,
+      "_origin": "semantic",
+      "community": 7,
       "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
@@ -3711,54 +4078,11 @@
       "type": "external"
     },
     {
-      "id": "datetime",
-      "label": "datetime",
-      "community": 6,
-      "community_name": "auth.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "datetime",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "hashlib",
-      "label": "hashlib",
-      "community": 6,
-      "community_name": "auth.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "hashlib",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "pydantic",
-      "label": "pydantic",
-      "community": 6,
-      "community_name": "auth.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "pydantic",
-      "source_file": "",
-      "type": "external"
-    },
-    {
-      "id": "secrets",
-      "label": "secrets",
-      "community": 6,
-      "community_name": "auth.py",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "secrets",
-      "source_file": "",
-      "type": "external"
-    },
-    {
       "id": "fastapi",
       "label": "fastapi",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "fastapi",
@@ -3768,8 +4092,9 @@
     {
       "id": "fastapi_middleware_cors",
       "label": "fastapi_middleware_cors",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "fastapi_middleware_cors",
@@ -3777,21 +4102,23 @@
       "type": "external"
     },
     {
-      "id": "fastapi_testclient",
-      "label": "fastapi_testclient",
+      "id": "hashlib",
+      "label": "hashlib",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
-      "norm_label": "fastapi_testclient",
+      "norm_label": "hashlib",
       "source_file": "",
       "type": "external"
     },
     {
       "id": "pydantic_settings",
       "label": "pydantic_settings",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "pydantic_settings",
@@ -3799,10 +4126,23 @@
       "type": "external"
     },
     {
+      "id": "secrets",
+      "label": "secrets",
+      "_origin": "semantic",
+      "community": 7,
+      "community_name": "auth.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "secrets",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "sqlalchemy_ext_asyncio",
       "label": "sqlalchemy_ext_asyncio",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "sqlalchemy_ext_asyncio",
@@ -3812,11 +4152,56 @@
     {
       "id": "typing",
       "label": "typing",
+      "_origin": "semantic",
       "community": 7,
-      "community_name": "deps.py",
+      "community_name": "auth.py",
       "external": true,
       "file_type": "concept",
       "norm_label": "typing",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "fastapi_responses",
+      "label": "fastapi_responses",
+      "community": 5,
+      "community_name": "conversations.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "fastapi_responses",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "httpx",
+      "label": "httpx",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "httpx",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "json",
+      "label": "json",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "json",
+      "source_file": "",
+      "type": "external"
+    },
+    {
+      "id": "logging",
+      "label": "logging",
+      "community": 6,
+      "community_name": "test_chat.py",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "logging",
       "source_file": "",
       "type": "external"
     }
@@ -3919,6 +4304,66 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_api_conversations_event",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L130",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_api_conversations_serialize",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L130",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat_events",
+      "target": "backend_app_ollama_stream_chat",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat_events",
+      "target": "backend_app_api_conversations_event",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat_events",
+      "target": "backend_app_api_conversations_serialize",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L156",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_api_deps_get_current_user",
       "target": "backend_app_core_security_hash_session_token",
       "relation": "calls",
@@ -3928,6 +4373,114 @@
       "context": "call",
       "source_file": "backend/app/api/deps.py",
       "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama_stream_chat",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L32",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_failing_ollama_fake_stream",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_rejects_empty_content",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_rejects_other_users_conversation",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L58",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_reports_provider_failure_without_leaking_details",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L131",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_reports_provider_failure_without_leaking_details",
+      "target": "backend_tests_test_chat_parse_events",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L136",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_sends_bounded_context",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L113",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_streams_and_persists_both_messages",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_streams_and_persists_both_messages",
+      "target": "backend_tests_test_chat_parse_events",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L90",
       "weight": 1.0
     },
     {
@@ -4035,31 +4588,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L119",
+      "source_location": "L125",
       "weight": 1.0
     },
     {
       "source": "src_features_chat_dashboard_dashboard",
-      "target": "src_services_api_createmessage",
+      "target": "src_services_api_streamchat",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L124",
-      "weight": 1.0
-    },
-    {
-      "source": "src_features_chat_dashboard_dashboard",
-      "target": "src_services_geminiservice_askgemini",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L128",
+      "source_location": "L132",
       "weight": 1.0
     },
     {
@@ -4071,7 +4612,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L27",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -4083,7 +4624,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L51",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -4095,7 +4636,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L51",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -4107,7 +4648,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L58",
+      "source_location": "L60",
       "weight": 1.0
     },
     {
@@ -4119,7 +4660,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L72",
+      "source_location": "L74",
       "weight": 1.0
     },
     {
@@ -4131,7 +4672,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L85",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -4143,7 +4684,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L96",
+      "source_location": "L98",
       "weight": 1.0
     },
     {
@@ -4156,18 +4697,6 @@
       "context": "call",
       "source_file": "src/services/api.ts",
       "source_location": "L89",
-      "weight": 1.0
-    },
-    {
-      "source": "src_services_api_createmessage",
-      "target": "src_services_api_tomessage",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "src/services/api.ts",
-      "source_location": "L115",
       "weight": 1.0
     },
     {
@@ -4243,6 +4772,30 @@
       "weight": 1.0
     },
     {
+      "source": "src_services_api_streamchat",
+      "target": "src_services_api_tomessage",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "src/services/api.ts",
+      "source_location": "L162",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_api_conversations_chat_events",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
       "source": "backend_tests_conftest_database",
       "target": "backend_tests_conftest_database_reset",
       "relation": "contains",
@@ -4303,6 +4856,18 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_api_conversations_py_post",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_api_conversations_create_conversation",
       "target": "backend_app_api_conversations_py_post",
       "relation": "references",
@@ -4311,7 +4876,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L27",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -4323,7 +4888,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L76",
+      "source_location": "L84",
       "weight": 1.0
     },
     {
@@ -4335,7 +4900,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L53",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -4347,7 +4912,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L38",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -4359,7 +4924,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L17",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -4371,7 +4936,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L59",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -4383,7 +4948,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L43",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -4412,7 +4977,7 @@
     },
     {
       "source": "backend_tests_conftest_client",
-      "target": "fixture",
+      "target": "backend_tests_conftest_py_fixture",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4424,7 +4989,7 @@
     },
     {
       "source": "backend_tests_conftest_database",
-      "target": "fixture",
+      "target": "backend_tests_conftest_py_fixture",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4436,7 +5001,7 @@
     },
     {
       "source": "backend_tests_conftest_signed_up",
-      "target": "fixture",
+      "target": "backend_tests_conftest_py_fixture",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4444,6 +5009,30 @@
       "context": "decorator",
       "source_file": "backend/tests/conftest.py",
       "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_failing_ollama",
+      "target": "backend_tests_test_chat_py_fixture",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_fake_ollama",
+      "target": "backend_tests_test_chat_py_fixture",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -4628,6 +5217,18 @@
     },
     {
       "source": "backend_app_api_conversations",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
       "target": "backend_app_db_models_conversation",
       "relation": "imports",
       "_origin": "ast",
@@ -4635,7 +5236,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L5",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -4647,7 +5248,43 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L5",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_ollama_stream_chat",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_schemas_chatrequest",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4659,7 +5296,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4671,7 +5308,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4683,7 +5320,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4695,7 +5332,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4707,7 +5344,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L6",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -4843,6 +5480,42 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_ollama",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama",
+      "target": "logging",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama",
+      "target": "httpx",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_schemas",
       "target": "uuid",
       "relation": "imports",
@@ -4900,6 +5573,42 @@
       "context": "import",
       "source_file": "backend/tests/conftest.py",
       "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "json",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "pytest",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -5252,18 +5961,6 @@
     },
     {
       "source": "src_features_chat_dashboard",
-      "target": "src_services_geminiservice_askgemini",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L5",
-      "weight": 1.0
-    },
-    {
-      "source": "src_features_chat_dashboard",
       "target": "src_types_chat_chat",
       "relation": "imports",
       "_origin": "ast",
@@ -5271,7 +5968,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -5283,7 +5980,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -5295,7 +5992,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -5307,7 +6004,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "weight": 1.0
     },
     {
@@ -5367,18 +6064,6 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/services/api.ts",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "src_services_geminiservice",
-      "target": "src_constants_gemini_api_url",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/services/geminiService.ts",
       "source_location": "L1",
       "weight": 1.0
     },
@@ -5612,42 +6297,6 @@
     },
     {
       "source": "backend_app_api_conversations",
-      "target": "fastapi",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_app_api_conversations",
-      "target": "sqlalchemy",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L2",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_app_api_conversations",
-      "target": "backend_app_api_deps",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "backend/app/api/conversations.py",
-      "source_location": "L4",
-      "weight": 1.0
-    },
-    {
-      "source": "backend_app_api_conversations",
       "target": "backend_app_db_models",
       "relation": "imports_from",
       "_origin": "ast",
@@ -5655,7 +6304,31 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L5",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_db_session",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_ollama",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L12",
       "weight": 1.0
     },
     {
@@ -5667,7 +6340,79 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "backend/app/api/conversations.py",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "collections_abc",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "fastapi",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "fastapi_responses",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "sqlalchemy",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
       "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_api_deps",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_core_config",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -5959,6 +6704,30 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_ollama",
+      "target": "collections_abc",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama",
+      "target": "backend_app_core_config",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_schemas",
       "target": "datetime",
       "relation": "imports_from",
@@ -6088,6 +6857,54 @@
       "context": "import",
       "source_file": "backend/tests/test_auth.py",
       "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "collections_abc",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "fastapi_testclient",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_app_api_init",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_app_ollama",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -6370,7 +7187,7 @@
     },
     {
       "source": "src_features_chat_dashboard",
-      "target": "src_services_geminiservice",
+      "target": "src_services_api",
       "relation": "imports_from",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -6382,18 +7199,6 @@
     },
     {
       "source": "src_features_chat_dashboard",
-      "target": "src_services_api",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L6",
-      "weight": 1.0
-    },
-    {
-      "source": "src_features_chat_dashboard",
       "target": "src_types_chat",
       "relation": "imports_from",
       "_origin": "ast",
@@ -6401,7 +7206,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L7",
+      "source_location": "L6",
       "type_only": true,
       "weight": 1.0
     },
@@ -6476,18 +7281,6 @@
       "source_file": "src/services/api.ts",
       "source_location": "L1",
       "type_only": true,
-      "weight": 1.0
-    },
-    {
-      "source": "src_services_geminiservice",
-      "target": "src_constants",
-      "relation": "imports_from",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "src/services/geminiService.ts",
-      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -6659,6 +7452,30 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_api_conversations_py_sessiondep",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations_chat",
+      "target": "ownedconversation",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_api_conversations_create_conversation",
       "target": "backend_app_api_conversations_py_currentuser",
       "relation": "references",
@@ -6667,7 +7484,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L28",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -6679,7 +7496,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L28",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -6691,7 +7508,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L81",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -6703,7 +7520,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L81",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -6715,7 +7532,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L54",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6727,7 +7544,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L54",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -6739,7 +7556,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L39",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -6751,7 +7568,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -6763,7 +7580,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -6775,7 +7592,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L60",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -6787,7 +7604,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L60",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -6799,7 +7616,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L44",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -6811,7 +7628,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L44",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -6995,6 +7812,114 @@
       "weight": 1.0
     },
     {
+      "source": "backend_tests_test_chat_failing_ollama",
+      "target": "monkeypatch",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_fake_ollama",
+      "target": "monkeypatch",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_new_conversation",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_rejects_empty_content",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_rejects_other_users_conversation",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_reports_provider_failure_without_leaking_details",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_requires_authentication",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_sends_bounded_context",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_test_chat_streams_and_persists_both_messages",
+      "target": "backend_tests_test_chat_py_testclient",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
       "source": "backend_tests_test_conversations_create_conversation",
       "target": "backend_tests_test_conversations_py_testclient",
       "relation": "references",
@@ -7103,6 +8028,18 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "streamingresponse",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "return_type",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
       "source": "backend_alembic_env",
       "target": "backend_app_db_models",
       "relation": "imports_from",
@@ -7136,6 +8073,18 @@
       "context": "submodule_import",
       "source_file": "backend/app/main.py",
       "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_app_api_conversations",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "submodule_import",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L7",
       "weight": 1.0
     },
     {
@@ -7272,13 +8221,46 @@
     },
     {
       "source": "backend_app_api_conversations",
+      "target": "backend_app_api_conversations_event",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_api_conversations_serialize",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
+      "target": "backend_app_api_conversations_chat",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_api_conversations",
       "target": "backend_app_api_conversations_list_conversations",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -7289,7 +8271,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L28",
+      "source_location": "L36",
       "weight": 1.0
     },
     {
@@ -7300,7 +8282,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L39",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -7311,7 +8293,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L44",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -7322,7 +8304,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L54",
+      "source_location": "L62",
       "weight": 1.0
     },
     {
@@ -7333,7 +8315,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L60",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -7344,7 +8326,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L81",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -7513,6 +8495,28 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_ollama",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama",
+      "target": "backend_app_ollama_stream_chat",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_schemas",
       "target": "backend_app_schemas_signuprequest",
       "relation": "contains",
@@ -7591,13 +8595,24 @@
     },
     {
       "source": "backend_app_schemas",
-      "target": "backend_app_schemas_messageresponse",
+      "target": "backend_app_schemas_chatrequest",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/schemas.py",
       "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_schemas",
+      "target": "backend_app_schemas_messageresponse",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -7730,6 +8745,127 @@
       "confidence_score": 1.0,
       "source_file": "backend/tests/test_auth.py",
       "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_sends_bounded_context",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_parse_events",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_reports_provider_failure_without_leaking_details",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_rejects_empty_content",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_fake_ollama",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_failing_ollama",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_new_conversation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_requires_authentication",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_rejects_other_users_conversation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat",
+      "target": "backend_tests_test_chat_test_chat_streams_and_persists_both_messages",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_failing_ollama",
+      "target": "backend_tests_test_chat_failing_ollama_fake_stream",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -8878,24 +10014,13 @@
     },
     {
       "source": "src_constants",
-      "target": "src_constants_gemini_api_url",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/constants.ts",
-      "source_location": "L1",
-      "weight": 1.0
-    },
-    {
-      "source": "src_constants",
       "target": "src_constants_theme_storage_key",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/constants.ts",
-      "source_location": "L3",
+      "source_location": "L1",
       "weight": 1.0
     },
     {
@@ -8928,7 +10053,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L14",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -8939,7 +10064,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L19",
+      "source_location": "L18",
       "weight": 1.0
     },
     {
@@ -8950,7 +10075,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L22",
+      "source_location": "L21",
       "weight": 1.0
     },
     {
@@ -8961,7 +10086,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/features/chat/Dashboard.tsx",
-      "source_location": "L9",
+      "source_location": "L8",
       "weight": 1.0
     },
     {
@@ -9010,13 +10135,35 @@
     },
     {
       "source": "src_services_api",
-      "target": "src_services_api_createmessage",
+      "target": "src_services_api_chatstreamevent",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/services/api.ts",
       "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_api",
+      "target": "src_services_api_chatstreamhandlers",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/services/api.ts",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "src_services_api",
+      "target": "src_services_api_streamchat",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/services/api.ts",
+      "source_location": "L122",
       "weight": 1.0
     },
     {
@@ -9171,28 +10318,6 @@
       "confidence_score": 1.0,
       "source_file": "src/services/api.ts",
       "source_location": "L96",
-      "weight": 1.0
-    },
-    {
-      "source": "src_services_geminiservice",
-      "target": "src_services_geminiservice_askgemini",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/services/geminiService.ts",
-      "source_location": "L13",
-      "weight": 1.0
-    },
-    {
-      "source": "src_services_geminiservice",
-      "target": "src_services_geminiservice_geminiresponse",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "src/services/geminiService.ts",
-      "source_location": "L3",
       "weight": 1.0
     },
     {
@@ -9548,6 +10673,28 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_ollama_ollamaerror",
+      "target": "runtimeerror",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_schemas_chatrequest",
+      "target": "basemodel",
+      "relation": "inherits",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/schemas.py",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
       "source": "backend_app_schemas_conversationcreate",
       "target": "basemodel",
       "relation": "inherits",
@@ -9610,7 +10757,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/schemas.py",
-      "source_location": "L59",
+      "source_location": "L63",
       "weight": 1.0
     },
     {
@@ -9658,6 +10805,39 @@
       "weight": 1.0
     },
     {
+      "source": "backend_app_ollama_rationale_15",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_app_ollama_rationale_19",
+      "target": "backend_app_ollama_stream_chat",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/app/ollama.py",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_rationale_21",
+      "target": "backend_tests_test_chat_fake_ollama",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
       "source": "backend_alembic_env_run_migrations_online",
       "target": "backend_alembic_env_do_run_migrations",
       "relation": "indirect_call",
@@ -9667,6 +10847,30 @@
       "context": "argument",
       "source_file": "backend/alembic/env.py",
       "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_failing_ollama",
+      "target": "backend_tests_test_chat_fake_ollama_fake_stream",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "backend_tests_test_chat_fake_ollama",
+      "target": "backend_tests_test_chat_fake_ollama_fake_stream",
+      "relation": "indirect_call",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "context": "argument",
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -9702,7 +10906,7 @@
       "confidence_score": 0.95,
       "context": "generic_arg",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L18",
+      "source_location": "L26",
       "weight": 0.8
     },
     {
@@ -9714,7 +10918,7 @@
       "confidence_score": 0.95,
       "context": "generic_arg",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L65",
+      "source_location": "L73",
       "weight": 0.8
     },
     {
@@ -9754,6 +10958,18 @@
       "weight": 0.8
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_schemas_chatrequest",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "parameter_type",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L111",
+      "weight": 0.8
+    },
+    {
       "source": "backend_app_api_conversations_create_conversation",
       "target": "backend_app_schemas_conversationcreate",
       "relation": "uses",
@@ -9762,7 +10978,7 @@
       "confidence_score": 0.95,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L29",
+      "source_location": "L37",
       "weight": 0.8
     },
     {
@@ -9774,7 +10990,19 @@
       "confidence_score": 0.95,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L82",
+      "source_location": "L90",
+      "weight": 0.8
+    },
+    {
+      "source": "backend_app_api_conversations_serialize",
+      "target": "backend_app_db_models_message",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "context": "parameter_type",
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L105",
       "weight": 0.8
     },
     {
@@ -9786,7 +11014,7 @@
       "confidence_score": 0.95,
       "context": "parameter_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L45",
+      "source_location": "L53",
       "weight": 0.8
     },
     {
@@ -9834,7 +11062,7 @@
       "confidence_score": 0.95,
       "context": "return_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L30",
+      "source_location": "L38",
       "weight": 0.8
     },
     {
@@ -9846,7 +11074,7 @@
       "confidence_score": 0.95,
       "context": "return_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L83",
+      "source_location": "L91",
       "weight": 0.8
     },
     {
@@ -9858,7 +11086,7 @@
       "confidence_score": 0.95,
       "context": "return_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L39",
+      "source_location": "L47",
       "weight": 0.8
     },
     {
@@ -9870,7 +11098,7 @@
       "confidence_score": 0.95,
       "context": "return_type",
       "source_file": "backend/app/api/conversations.py",
-      "source_location": "L46",
+      "source_location": "L54",
       "weight": 0.8
     },
     {
@@ -9909,6 +11137,39 @@
       "weight": 0.8
     },
     {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_db_models_message",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L113",
+      "weight": 0.8
+    },
+    {
+      "source": "backend_app_api_conversations_chat",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L140",
+      "weight": 0.8
+    },
+    {
+      "source": "backend_app_api_conversations_serialize",
+      "target": "backend_app_schemas_messageresponse",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/app/api/conversations.py",
+      "source_location": "L106",
+      "weight": 0.8
+    },
+    {
       "source": "backend_app_api_deps_get_current_user",
       "target": "backend_app_db_models_usersession",
       "relation": "uses",
@@ -9928,6 +11189,17 @@
       "confidence_score": 0.95,
       "source_file": "backend/tests/conftest.py",
       "source_location": "L22",
+      "weight": 0.8
+    },
+    {
+      "source": "backend_tests_test_chat_failing_ollama",
+      "target": "backend_app_ollama_ollamaerror",
+      "relation": "uses",
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "backend/tests/test_chat.py",
+      "source_location": "L36",
       "weight": 0.8
     },
     {

@@ -1,13 +1,13 @@
 # Graph Report - MitraAI  (2026-09-22)
 
 ## Corpus Check
-- 52 files · ~18,072 words
+- 53 files · ~19,018 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 8 file(s) not represented in the graph (top: (none) 2, .css 2, .example 1)
 
 ## Summary
-- 328 nodes · 535 edges · 27 communities (18 shown, 9 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 30 edges (avg confidence: 0.94)
+- 359 nodes · 611 edges · 29 communities (20 shown, 9 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.94)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -22,8 +22,8 @@
 - models.py
 - devDependencies
 - conversations.py
+- test_chat.py
 - auth.py
-- deps.py
 - What You Must Do When Invoked
 - test_auth.py
 - test_conversations.py
@@ -39,39 +39,41 @@
 - CLAUDE.md
 - .claude/CLAUDE.md
 - extraction-spec.md
+- conftest.py
+- collections_abc
 
 ## God Nodes (most connected - your core abstractions)
 1. `compilerOptions` - 16 edges
 2. `Conversation` - 14 edges
 3. `User` - 13 edges
-4. `Dashboard()` - 12 edges
-5. `What You Must Do When Invoked` - 12 edges
-6. `Base` - 10 edges
-7. `/graphify` - 10 edges
-8. `_start_session()` - 9 edges
-9. `Message` - 9 edges
-10. `signup()` - 8 edges
+4. `What You Must Do When Invoked` - 12 edges
+5. `chat()` - 11 edges
+6. `Message` - 11 edges
+7. `Dashboard()` - 11 edges
+8. `Base` - 10 edges
+9. `/graphify` - 10 edges
+10. `_start_session()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `_start_session()` --uses--> `User`  [INFERRED]
   backend/app/api/auth.py → backend/app/db/models.py
 - `signup()` --uses--> `User`  [INFERRED]
   backend/app/api/auth.py → backend/app/db/models.py
+- `signup()` --uses--> `SignupRequest`  [INFERRED]
+  backend/app/api/auth.py → backend/app/schemas.py
 - `login()` --uses--> `User`  [INFERRED]
   backend/app/api/auth.py → backend/app/db/models.py
-- `logout()` --uses--> `UserSession`  [INFERRED]
-  backend/app/api/auth.py → backend/app/db/models.py
-- `me()` --uses--> `User`  [INFERRED]
-  backend/app/api/auth.py → backend/app/db/models.py
+- `login()` --uses--> `LoginRequest`  [INFERRED]
+  backend/app/api/auth.py → backend/app/schemas.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (27 total, 9 thin omitted)
+## Communities (29 total, 9 thin omitted)
 
 ### Community 0 - "api.ts"
-Cohesion: 0.08
-Nodes (40): react, react-dom, App(), Results(), ResultsProps, GEMINI_API_URL, THEME_STORAGE_KEY, AuthForm() (+32 more)
+Cohesion: 0.09
+Nodes (39): react, react-dom, App(), Results(), ResultsProps, THEME_STORAGE_KEY, AuthForm(), AuthFormProps (+31 more)
 
 ### Community 1 - "package.json"
 Cohesion: 0.08
@@ -82,24 +84,24 @@ Cohesion: 0.11
 Nodes (17): compilerOptions, allowJs, allowSyntheticDefaultImports, esModuleInterop, forceConsistentCasingInFileNames, isolatedModules, jsx, lib (+9 more)
 
 ### Community 3 - "models.py"
-Cohesion: 0.12
-Nodes (25): asyncio, do_run_migrations(), run_migrations_online(), Base, Conversation, Message, TimestampMixin, User (+17 more)
+Cohesion: 0.14
+Nodes (20): do_run_migrations(), run_migrations_online(), me(), CurrentUser, get, Base, Conversation, Message (+12 more)
 
 ### Community 4 - "devDependencies"
 Cohesion: 0.17
 Nodes (12): devDependencies, eslint, @eslint/js, eslint-plugin-react-hooks, eslint-plugin-react-refresh, globals, @types/react, @types/react-dom (+4 more)
 
 ### Community 5 - "conversations.py"
-Cohesion: 0.12
-Nodes (23): alembic, create_conversation(), create_message(), delete_conversation(), get_conversation(), list_conversations(), list_messages(), CurrentUser (+15 more)
+Cohesion: 0.11
+Nodes (34): chat(), events(), create_conversation(), create_message(), delete_conversation(), _event(), get_conversation(), list_conversations() (+26 more)
 
-### Community 6 - "auth.py"
-Cohesion: 0.13
-Nodes (25): login(), logout(), me(), CurrentUser, get, post, Request, SessionDep (+17 more)
+### Community 6 - "test_chat.py"
+Cohesion: 0.16
+Nodes (22): OllamaError, Raised with a message that is safe to show to the client., failing_ollama(), fake_stream(), fake_ollama(), fake_stream(), new_conversation(), parse_events() (+14 more)
 
-### Community 7 - "deps.py"
-Cohesion: 0.10
-Nodes (18): AsyncSession, get_current_user(), get_owned_conversation(), CurrentUser, Request, SessionDep, Settings, get_session() (+10 more)
+### Community 7 - "auth.py"
+Cohesion: 0.09
+Nodes (34): AsyncSession, login(), logout(), post, Request, SessionDep, signup(), _start_session() (+26 more)
 
 ### Community 8 - "What You Must Do When Invoked"
 Cohesion: 0.08
@@ -141,25 +143,33 @@ Nodes (3): For --cluster-only, For --update (incremental re-extraction), graphif
 Cohesion: 0.50
 Nodes (3): Expanding the ESLint configuration, React Compiler, React + Vite
 
+### Community 27 - "conftest.py"
+Cohesion: 0.18
+Nodes (9): asyncio, client(), database(), fixture, TestClient, signed_up(), fastapi_testclient, os (+1 more)
+
+### Community 28 - "collections_abc"
+Cohesion: 0.28
+Nodes (3): alembic, collections_abc, sqlalchemy
+
 ## Knowledge Gaps
-- **101 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+96 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 154 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **102 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+97 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 161 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **9 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `react` connect `api.ts` to `package.json`?**
-  _High betweenness centrality (0.038) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `devDependencies` connect `devDependencies` to `package.json`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `OllamaError` connect `test_chat.py` to `conversations.py`?**
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Are the 8 inferred relationships involving `Conversation` (e.g. with `create_conversation()` and `get_conversation()`) actually correct?**
   _`Conversation` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 7 inferred relationships involving `User` (e.g. with `login()` and `me()`) actually correct?**
   _`User` has 7 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _101 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _102 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.08408163265306122 - nodes in this community are weakly interconnected._
-- **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.07956989247311828 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08599290780141844 - nodes in this community are weakly interconnected._

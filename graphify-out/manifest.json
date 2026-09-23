@@ -24,15 +24,15 @@
     "semantic_hash": "955cae1dbc6aa29c67ead43657616959"
   },
   "src/constants.ts": {
-    "mtime": 1790088049.6514804,
-    "seen": 1790088420.943507,
-    "ast_hash": "3434da5af6c22c75025dc054ed2c22fe",
+    "mtime": 1790089623.4707623,
+    "seen": 1790090696.151755,
+    "ast_hash": "2ce4aed7267fe1dbd4e3182c6e4c4dd8",
     "semantic_hash": ""
   },
   "src/features/chat/Dashboard.tsx": {
-    "mtime": 1790088373.9015608,
-    "seen": 1790088420.943512,
-    "ast_hash": "ed455162ec64eecc01e75a5a35d98ad0",
+    "mtime": 1790090677.5908651,
+    "seen": 1790090696.151757,
+    "ast_hash": "414014c32e5d8c1a405d0f859f116e43",
     "semantic_hash": ""
   },
   "src/hooks/useLocalStorage.ts": {
@@ -46,12 +46,6 @@
     "seen": 1789795128.9252238,
     "ast_hash": "da90bf425e0062e1c1e41d64695da631",
     "semantic_hash": "da90bf425e0062e1c1e41d64695da631"
-  },
-  "src/services/geminiService.ts": {
-    "mtime": 1788940571.40157,
-    "seen": 1789795128.925225,
-    "ast_hash": "1247b177b9bea117c47afc1f51ae3896",
-    "semantic_hash": "1247b177b9bea117c47afc1f51ae3896"
   },
   "src/types/chat.ts": {
     "mtime": 1790088048.4297292,
@@ -120,9 +114,9 @@
     "semantic_hash": ""
   },
   "backend/app/api/conversations.py": {
-    "mtime": 1790087991.1074648,
-    "seen": 1790088420.943431,
-    "ast_hash": "e2b1349e8e1e56e1380da157a432da36",
+    "mtime": 1790089617.7536962,
+    "seen": 1790090696.151723,
+    "ast_hash": "dbe8ff04321873a5ef99df11bbdd6693",
     "semantic_hash": ""
   },
   "backend/app/api/deps.py": {
@@ -138,9 +132,9 @@
     "semantic_hash": ""
   },
   "backend/app/core/config.py": {
-    "mtime": 1790087943.7056592,
-    "seen": 1790088420.9434361,
-    "ast_hash": "f37294e10fcf179dfae8cd2e5f0467f8",
+    "mtime": 1790089559.6534994,
+    "seen": 1790090696.1517272,
+    "ast_hash": "1a27423a747f5be609735bdb18706af8",
     "semantic_hash": ""
   },
   "backend/app/core/security.py": {
@@ -180,9 +174,9 @@
     "semantic_hash": ""
   },
   "backend/app/schemas.py": {
-    "mtime": 1790087962.5083244,
-    "seen": 1790088420.943444,
-    "ast_hash": "4a45057f801b1a2f88358a88ad129252",
+    "mtime": 1790089573.3117158,
+    "seen": 1790090696.1517382,
+    "ast_hash": "1da21188c8dab48a476a26101197b7b9",
     "semantic_hash": ""
   },
   "backend/tests/__init__.py": {
@@ -228,9 +222,9 @@
     "semantic_hash": ""
   },
   "src/services/api.ts": {
-    "mtime": 1790088370.914896,
-    "seen": 1790088420.94352,
-    "ast_hash": "69e6d6bd0481a8f738f7a819749e6cd8",
+    "mtime": 1790089695.3922,
+    "seen": 1790090696.1517608,
+    "ast_hash": "f2936afac170ac33761885cbe98d5a02",
     "semantic_hash": ""
   },
   ".claude/CLAUDE.md": {
@@ -351,6 +345,18 @@
     "mtime": 1783907520.685045,
     "seen": 1790088420.9436128,
     "ast_hash": "9960a24288958394ac50e57ff638b036",
+    "semantic_hash": ""
+  },
+  "backend/app/ollama.py": {
+    "mtime": 1790089569.1226301,
+    "seen": 1790090696.151737,
+    "ast_hash": "f9e08cb4a54e27a2343d5ee59a4f6f3a",
+    "semantic_hash": ""
+  },
+  "backend/tests/test_chat.py": {
+    "mtime": 1790090475.1499536,
+    "seen": 1790090696.151744,
+    "ast_hash": "4c33d3522ed72b487ccc906b3b78d210",
     "semantic_hash": ""
   }
 }
