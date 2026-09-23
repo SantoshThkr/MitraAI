@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import auth, conversations
+from app.api import auth, conversations, documents
 from app.core.config import settings
 
 app = FastAPI(title="MitraAI API")
@@ -16,6 +16,7 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(conversations.router)
+app.include_router(documents.router)
 
 
 @app.get("/api/health")

@@ -10,6 +10,7 @@ from app.core.config import settings
 from app.db.models import Conversation, Message
 from app.db.session import SessionLocal
 from app.ollama import OllamaError, stream_chat
+from app.rag import build_grounded_prompt, search_chunks
 from app.schemas import (
     ChatRequest,
     ConversationCreate,
@@ -108,7 +109,10 @@ def _serialize(message: Message) -> dict[str, object]:
 
 @router.post("/{conversation_id}/chat")
 async def chat(
-    payload: ChatRequest, conversation: OwnedConversation, session: SessionDep
+    payload: ChatRequest,
+    conversation: OwnedConversation,
+    user: CurrentUser,
+    session: SessionDep,
 ) -> StreamingResponse:
     user_message = Message(
         conversation_id=conversation.id, role="user", content=payload.content
@@ -126,11 +130,22 @@ async def chat(
     context = [
         {"role": message.role, "content": message.content} for message in reversed(list(recent))
     ]
+
+    retrieved = await search_chunks(session, user.id, payload.content)
+    if retrieved:
+        context.insert(0, {"role": "system", "content": build_grounded_prompt(retrieved)})
+
+    sources = [
+        {"filename": item.filename, "page": item.page, "similarity": round(item.similarity, 4)}
+        for item in retrieved
+    ]
     conversation_id = conversation.id
     user_event = _event({"type": "user_message", "message": _serialize(user_message)})
 
     async def events() -> AsyncIterator[str]:
         yield user_event
+        if sources:
+            yield _event({"type": "sources", "sources": sources})
 
         chunks: list[str] = []
         try:

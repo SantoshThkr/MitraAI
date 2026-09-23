@@ -1,4 +1,11 @@
-import type { Chat, Message, MessageRole, User } from "../types/chat";
+import type {
+  Chat,
+  Citation,
+  Message,
+  MessageRole,
+  StoredDocument,
+  User,
+} from "../types/chat";
 
 type UserPayload = {
   id: string;
@@ -18,6 +25,16 @@ type MessagePayload = {
   content: string;
 };
 
+const failure = async (response: Response): Promise<Error> => {
+  const detail = await response
+    .json()
+    .then((body: { detail?: unknown }) =>
+      typeof body.detail === "string" ? body.detail : null,
+    )
+    .catch(() => null);
+  return new Error(detail ?? `Request failed: ${response.status}`);
+};
+
 const request = async <T>(path: string, init: RequestInit = {}): Promise<T> => {
   const response = await fetch(`/api${path}`, {
     ...init,
@@ -26,13 +43,7 @@ const request = async <T>(path: string, init: RequestInit = {}): Promise<T> => {
   });
 
   if (!response.ok) {
-    const detail = await response
-      .json()
-      .then((body: { detail?: unknown }) =>
-        typeof body.detail === "string" ? body.detail : null,
-      )
-      .catch(() => null);
-    throw new Error(detail ?? `Request failed: ${response.status}`);
+    throw await failure(response);
   }
 
   return response.status === 204 ? (undefined as T) : ((await response.json()) as T);
@@ -107,14 +118,39 @@ export const deleteChat = (chatId: string): Promise<void> =>
 export const fetchMessages = async (chatId: string): Promise<Message[]> =>
   (await request<MessagePayload[]>(`/conversations/${chatId}/messages`)).map(toMessage);
 
+export const fetchDocuments = (): Promise<StoredDocument[]> =>
+  request<StoredDocument[]>("/documents");
+
+export const uploadDocument = async (file: File): Promise<StoredDocument> => {
+  const body = new FormData();
+  body.append("file", file);
+
+  const response = await fetch("/api/documents", {
+    method: "POST",
+    credentials: "include",
+    body,
+  });
+
+  if (!response.ok) {
+    throw await failure(response);
+  }
+
+  return (await response.json()) as StoredDocument;
+};
+
+export const deleteDocument = (documentId: string): Promise<void> =>
+  request<void>(`/documents/${documentId}`, { method: "DELETE" });
+
 type ChatStreamEvent =
   | { type: "user_message"; message: MessagePayload }
+  | { type: "sources"; sources: Citation[] }
   | { type: "token"; text: string }
   | { type: "done"; message: MessagePayload }
   | { type: "error"; detail: string };
 
 type ChatStreamHandlers = {
   onUserMessage: (message: Message) => void;
+  onSources: (sources: Citation[]) => void;
   onToken: (text: string) => void;
   onDone: (message: Message) => void;
 };
@@ -133,8 +169,11 @@ export const streamChat = async (
     signal,
   });
 
-  if (!response.ok || !response.body) {
-    throw new Error(`Request failed: ${response.status}`);
+  if (!response.ok) {
+    throw await failure(response);
+  }
+  if (!response.body) {
+    throw new Error("The server returned an empty stream.");
   }
 
   const reader = response.body.getReader();
@@ -160,6 +199,8 @@ export const streamChat = async (
       const event = JSON.parse(line.slice(6)) as ChatStreamEvent;
       if (event.type === "user_message") {
         handlers.onUserMessage(toMessage(event.message));
+      } else if (event.type === "sources") {
+        handlers.onSources(event.sources);
       } else if (event.type === "token") {
         handlers.onToken(event.text);
       } else if (event.type === "done") {

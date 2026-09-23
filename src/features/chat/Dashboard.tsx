@@ -3,7 +3,14 @@ import Results from "../../components/Results";
 import { THEME_STORAGE_KEY } from "../../constants";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import * as api from "../../services/api";
-import type { Chat, Message, Theme, User } from "../../types/chat";
+import type {
+  Chat,
+  Citation,
+  Message,
+  StoredDocument,
+  Theme,
+  User,
+} from "../../types/chat";
 
 type DashboardProps = {
   user: User;
@@ -26,6 +33,8 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
   const [theme, setTheme] = useLocalStorage<Theme>(THEME_STORAGE_KEY, "dark");
   const [loading, setLoading] = useState(false);
   const [streamingText, setStreamingText] = useState<string | null>(null);
+  const [citations, setCitations] = useState<Citation[]>([]);
+  const [documents, setDocuments] = useState<StoredDocument[]>([]);
   const [error, setError] = useState("");
   const abortRef = useRef<AbortController | null>(null);
 
@@ -51,6 +60,10 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
 
   useEffect(() => {
     api.fetchChats().then(setChats).catch((loadError) => setError(toErrorMessage(loadError)));
+    api
+      .fetchDocuments()
+      .then(setDocuments)
+      .catch((loadError) => setError(toErrorMessage(loadError)));
   }, []);
 
   useEffect(() => {
@@ -115,6 +128,7 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
     setError("");
     setLoading(true);
     setStreamingText("");
+    setCitations([]);
 
     const controller = new AbortController();
     abortRef.current = controller;
@@ -137,6 +151,7 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
             appendMessage(chatId, message);
             setQuery("");
           },
+          onSources: setCitations,
           onToken: (text) =>
             setStreamingText((previous) => (previous ?? "") + text),
           onDone: (message) => {
@@ -158,6 +173,34 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
   };
 
   const stopGenerating = () => abortRef.current?.abort();
+
+  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) {
+      return;
+    }
+
+    setError("");
+    try {
+      const uploaded = await api.uploadDocument(file);
+      setDocuments((previous) => [uploaded, ...previous]);
+      if (uploaded.status === "failed") {
+        setError(`Could not index ${uploaded.filename}.`);
+      }
+    } catch (uploadError) {
+      setError(toErrorMessage(uploadError));
+    }
+  };
+
+  const handleDeleteDocument = async (documentId: string) => {
+    try {
+      await api.deleteDocument(documentId);
+      setDocuments((previous) => previous.filter((item) => item.id !== documentId));
+    } catch (deleteError) {
+      setError(toErrorMessage(deleteError));
+    }
+  };
 
   return (
     <div
@@ -216,6 +259,40 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
           >
             Log out
           </button>
+        </div>
+
+        <div
+          className={`border-t border-zinc-800 pt-3 text-sm ${
+            theme === "dark" ? "text-zinc-400" : "text-slate-500"
+          }`}
+        >
+          <label className="cursor-pointer rounded-2xl border border-zinc-700 px-3 py-2 text-xs">
+            + Add document
+            <input
+              type="file"
+              accept=".pdf,.txt,.md"
+              className="hidden"
+              onChange={handleUpload}
+            />
+          </label>
+
+          <div className="mt-2 max-h-32 space-y-1 overflow-y-auto">
+            {documents.map((document) => (
+              <div key={document.id} className="flex items-center justify-between gap-2">
+                <span className="truncate text-xs" title={document.filename}>
+                  {document.filename}
+                  {document.status !== "ready" && ` (${document.status})`}
+                </span>
+                <button
+                  type="button"
+                  className="rounded-full px-2 text-xs text-red-300 hover:text-red-200"
+                  onClick={() => handleDeleteDocument(document.id)}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="overflow-y-auto flex-1 space-y-2 pr-1">
@@ -358,6 +435,23 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
                     >
                       <Results ans={streamingText} />
                     </div>
+                  </div>
+                )}
+
+                {citations.length > 0 && (
+                  <div
+                    className={`text-xs ${
+                      theme === "dark" ? "text-zinc-500" : "text-slate-500"
+                    }`}
+                  >
+                    Sources:{" "}
+                    {citations
+                      .map(
+                        (citation) =>
+                          citation.filename +
+                          (citation.page ? ` (p. ${citation.page})` : ""),
+                      )
+                      .join(", ")}
                   </div>
                 )}
               </div>

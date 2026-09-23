@@ -19,3 +19,16 @@ export type User = {
   email: string;
   displayName: string;
 };
+
+export type DocumentStatus = "uploaded" | "processing" | "ready" | "failed";
+
+export type StoredDocument = {
+  id: string;
+  filename: string;
+  status: DocumentStatus;
+};
+
+export type Citation = {
+  filename: string;
+  page: number | null;
+};

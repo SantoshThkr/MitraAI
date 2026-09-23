@@ -60,6 +60,16 @@ class ChatRequest(BaseModel):
     content: str = Field(min_length=1)
 
 
+class DocumentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    filename: str
+    status: Literal["uploaded", "processing", "ready", "failed"]
+    created_at: datetime
+    updated_at: datetime
+
+
 class MessageResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 

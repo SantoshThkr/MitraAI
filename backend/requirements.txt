@@ -4,7 +4,10 @@ bcrypt==5.0.0
 email-validator==2.3.0
 fastapi==0.141.1
 httpx==0.28.1
+pgvector==0.4.1
 pydantic-settings==2.15.0
+pypdf==6.1.1
 pytest==9.1.1
+python-multipart==0.0.20
 sqlalchemy[asyncio]==2.0.54
 uvicorn==0.53.0
