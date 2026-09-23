@@ -1,11 +1,8 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 
-type StoredValueParser<T> = (value: unknown) => T;
-
 export const useLocalStorage = <T>(
   key: string,
   initialValue: T | (() => T),
-  parseValue: StoredValueParser<T> = (value) => value as T,
 ): [T, Dispatch<SetStateAction<T>>] => {
   const [value, setValue] = useState<T>(() => {
     const fallbackValue =
@@ -23,7 +20,7 @@ export const useLocalStorage = <T>(
     }
 
     try {
-      return parseValue(JSON.parse(storedValue));
+      return JSON.parse(storedValue) as T;
     } catch {
       return fallbackValue;
     }

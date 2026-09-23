@@ -1,15 +1,21 @@
 export type MessageRole = "user" | "assistant";
 
 export type Message = {
+  id: string;
   role: MessageRole;
   text: string;
 };
 
 export type Chat = {
-  id: number;
+  id: string;
   title: string;
   createdAt: string;
-  messages: Message[];
 };
 
 export type Theme = "dark" | "light";
+
+export type User = {
+  id: string;
+  email: string;
+  displayName: string;
+};

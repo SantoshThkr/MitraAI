@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/constants.ts","./src/main.tsx","./src/vite-env.d.ts","./src/components/results.tsx","./src/features/chat/dashboard.tsx","./src/hooks/uselocalstorage.ts","./src/services/geminiservice.ts","./src/types/chat.ts","./src/utils/chat.ts"],"version":"6.0.3"}
+{"root":["./src/app.tsx","./src/constants.ts","./src/main.tsx","./src/vite-env.d.ts","./src/components/results.tsx","./src/features/auth/authform.tsx","./src/features/chat/dashboard.tsx","./src/hooks/uselocalstorage.ts","./src/services/api.ts","./src/types/chat.ts"],"version":"6.0.3"}
