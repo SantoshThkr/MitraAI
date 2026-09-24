@@ -111,12 +111,12 @@ def test_upload_marks_document_failed_when_embedding_fails(
     async def broken_embed(texts: list[str]) -> list[list[float]]:
         raise OllamaError("The AI service is unavailable.")
 
-    monkeypatch.setattr(rag, "embed_texts", broken_embed)
+    monkeypatch.setattr(rag, "embed_batch", broken_embed)
 
     response = upload(client, "notes.txt", b"some content")
 
-    assert response.status_code == 201
-    assert response.json()["status"] == "failed"
+    assert response.status_code == 503
+    assert [item["status"] for item in client.get("/api/documents").json()] == ["failed"]
 
 
 def test_documents_are_scoped_to_their_owner(
@@ -139,3 +139,61 @@ def test_delete_removes_document(
     assert client.delete(f"/api/documents/{document_id}").status_code == 204
     assert client.get("/api/documents").json() == []
     assert client.delete(f"/api/documents/{document_id}").status_code == 404
+
+
+# --- processing limits and empty files ---
+
+
+def test_empty_file_is_rejected_and_never_reported_ready(
+    client: TestClient, signed_up: dict[str, str], fake_embeddings: list
+) -> None:
+    response = upload(client, "blank.txt", b"   \n\t  \n")
+
+    assert response.status_code == 422
+    assert response.json()["detail"] == "No readable text was found in this file."
+
+    stored = client.get("/api/documents").json()
+    assert [item["status"] for item in stored] == ["failed"]
+    assert fake_embeddings == [], "an empty file must not reach the embedding model"
+
+
+def test_text_only_pdf_without_extractable_text_fails(
+    client: TestClient, signed_up: dict[str, str], fake_embeddings: list
+) -> None:
+    response = client.post(
+        "/api/documents",
+        files={"file": ("blank.pdf", make_pdf(["", ""]), "application/pdf")},
+    )
+
+    assert response.status_code == 422
+    assert [item["status"] for item in client.get("/api/documents").json()] == ["failed"]
+
+
+def test_pdf_pages_are_capped(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(settings, "max_pdf_pages", 2)
+
+    pages = extract_pages("many.pdf", make_pdf(["", "", "", ""]))
+
+    assert [page for page, _ in pages] == [1, 2]
+
+
+def test_chunk_count_is_capped(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(settings, "max_document_chunks", 3)
+    text = " ".join(f"word{index}" for index in range(5000))
+
+    assert len(chunk_pages([(None, text)])) == 3
+
+
+def test_embeddings_are_sent_in_bounded_batches(
+    client: TestClient, signed_up: dict[str, str], fake_embeddings: list,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(settings, "embed_batch_size", 2)
+    monkeypatch.setattr(settings, "chunk_chars", 40)
+    monkeypatch.setattr(settings, "chunk_overlap_chars", 0)
+
+    response = upload(client, "long.txt", b"x" * 400)
+
+    assert response.status_code == 201
+    assert len(fake_embeddings) > 1, "expected more than one embedding request"
+    assert all(len(batch) <= 2 for batch in fake_embeddings)

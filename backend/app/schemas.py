@@ -70,6 +70,12 @@ class DocumentResponse(BaseModel):
     updated_at: datetime
 
 
+class Source(BaseModel):
+    filename: str
+    page: int | None = None
+    similarity: float
+
+
 class MessageResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -77,4 +83,5 @@ class MessageResponse(BaseModel):
     conversation_id: uuid.UUID
     role: Literal["user", "assistant"]
     content: str
+    sources: list[Source] | None = None
     created_at: datetime

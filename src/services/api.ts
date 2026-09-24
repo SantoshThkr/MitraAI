@@ -23,6 +23,7 @@ type MessagePayload = {
   id: string;
   role: MessageRole;
   content: string;
+  sources?: Citation[] | null;
 };
 
 const failure = async (response: Response): Promise<Error> => {
@@ -65,6 +66,7 @@ const toMessage = (payload: MessagePayload): Message => ({
   id: payload.id,
   role: payload.role,
   text: payload.content,
+  sources: payload.sources ?? [],
 });
 
 export const signup = async (

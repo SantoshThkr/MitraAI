@@ -13,8 +13,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy import text
 
 from app import rag
-from app.core.config import settings
+from app.api.conversations import chat_limiter
 from app.db.base import Base
+from app.db.models import EMBEDDING_DIMENSIONS
 from app.db.session import engine
 from app.main import app
 
@@ -28,6 +29,7 @@ def database() -> Iterator[None]:
             await connection.run_sync(Base.metadata.create_all)
         await engine.dispose()
 
+    chat_limiter.reset()
     asyncio.run(reset())
     yield
     # close=False abandons the pool instead of closing sockets owned by the client's loop.
@@ -54,22 +56,23 @@ def signed_up(client: TestClient) -> dict[str, str]:
 
 def keyword_embedding(text: str) -> list[float]:
     """Deterministic bag-of-words vector: shared words give high cosine similarity."""
-    vector = [0.0] * settings.embedding_dimensions
+    vector = [0.0] * EMBEDDING_DIMENSIONS
     for word in text.lower().split():
         digest = hashlib.sha256(word.encode()).digest()
-        vector[int.from_bytes(digest[:4], "big") % settings.embedding_dimensions] += 1.0
+        vector[int.from_bytes(digest[:4], "big") % EMBEDDING_DIMENSIONS] += 1.0
 
     magnitude = sum(value * value for value in vector) ** 0.5
     return [value / magnitude for value in vector] if magnitude else vector
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def fake_embeddings(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[list[str]]]:
+    """Autouse so no test ever reaches a real Ollama instance."""
     calls: list[list[str]] = []
 
     async def fake_embed(texts: list[str]) -> list[list[float]]:
         calls.append(texts)
         return [keyword_embedding(text) for text in texts]
 
-    monkeypatch.setattr(rag, "embed_texts", fake_embed)
+    monkeypatch.setattr(rag, "embed_batch", fake_embed)
     yield calls

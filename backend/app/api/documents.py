@@ -4,11 +4,12 @@ from pathlib import Path
 
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import CurrentUser, SessionDep
 from app.core.config import settings
 from app.db.models import Document
-from app.rag import SUPPORTED_EXTENSIONS, index_document
+from app.rag import SUPPORTED_EXTENSIONS, EmptyDocumentError, index_document
 from app.schemas import DocumentResponse
 
 logger = logging.getLogger(__name__)
@@ -19,6 +20,15 @@ router = APIRouter(prefix="/api/documents", tags=["documents"])
 def storage_path(document_id: uuid.UUID) -> Path:
     """Files are stored under an id we generate, never under a client-supplied name."""
     return Path(settings.upload_dir) / str(document_id)
+
+
+async def _mark_failed(session: AsyncSession, document_id: uuid.UUID) -> None:
+    """Keep the row so the owner can see the failure and delete or replace it."""
+    await session.rollback()
+    document = await session.get(Document, document_id)
+    if document is not None:
+        document.status = "failed"
+        await session.commit()
 
 
 @router.get("", response_model=list[DocumentResponse])
@@ -43,10 +53,10 @@ async def upload_document(
 
     data = await file.read()
     if not data:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "The file is empty")
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "The file is empty")
     if len(data) > settings.max_upload_bytes:
         raise HTTPException(
-            status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            status.HTTP_413_CONTENT_TOO_LARGE,
             f"Files must be {settings.max_upload_bytes // (1024 * 1024)}MB or smaller",
         )
 
@@ -65,11 +75,18 @@ async def upload_document(
     try:
         await index_document(session, document, data)
         document.status = "ready"
+    except EmptyDocumentError:
+        await _mark_failed(session, document.id)
+        raise HTTPException(
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            "No readable text was found in this file.",
+        ) from None
     except Exception:
         logger.exception("Indexing failed for document %s", document.id)
-        await session.rollback()
-        document = await session.get(Document, document.id)
-        document.status = "failed"
+        await _mark_failed(session, document.id)
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE, "The document could not be processed."
+        ) from None
 
     await session.commit()
     await session.refresh(document)

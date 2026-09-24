@@ -3,11 +3,13 @@ from datetime import datetime
 
 from pgvector.sqlalchemy import Vector
 from sqlalchemy import DateTime, ForeignKey, Index, Integer, String, Text, func
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.core.config import settings
 from app.db.base import Base
+
+# Fixed: the document_chunks.embedding column is created with this width.
+EMBEDDING_DIMENSIONS = 768
 
 
 class TimestampMixin:
@@ -90,6 +92,7 @@ class Message(TimestampMixin, Base):
     )
     role: Mapped[str] = mapped_column(String(16), nullable=False)
     content: Mapped[str] = mapped_column(Text, nullable=False)
+    sources: Mapped[list[dict] | None] = mapped_column(JSONB, nullable=True)
 
     conversation: Mapped["Conversation"] = relationship(back_populates="messages")
 
@@ -136,7 +139,7 @@ class DocumentChunk(TimestampMixin, Base):
     page: Mapped[int | None] = mapped_column(Integer, nullable=True)
     content: Mapped[str] = mapped_column(Text, nullable=False)
     embedding: Mapped[list[float]] = mapped_column(
-        Vector(settings.embedding_dimensions), nullable=False
+        Vector(EMBEDDING_DIMENSIONS), nullable=False
     )
 
     document: Mapped["Document"] = relationship(back_populates="chunks")

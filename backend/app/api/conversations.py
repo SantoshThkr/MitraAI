@@ -1,12 +1,13 @@
 import json
 from collections.abc import AsyncIterator
 
-from fastapi import APIRouter, Query, status
+from fastapi import APIRouter, HTTPException, Query, status
 from fastapi.responses import StreamingResponse
 from sqlalchemy import select
 
 from app.api.deps import CurrentUser, OwnedConversation, SessionDep
 from app.core.config import settings
+from app.core.ratelimit import RateLimiter
 from app.db.models import Conversation, Message
 from app.db.session import SessionLocal
 from app.ollama import OllamaError, stream_chat
@@ -21,6 +22,8 @@ from app.schemas import (
 )
 
 router = APIRouter(prefix="/api/conversations", tags=["conversations"])
+
+chat_limiter = RateLimiter(settings.chat_requests_per_minute)
 
 
 @router.get("", response_model=list[ConversationResponse])
@@ -114,6 +117,11 @@ async def chat(
     user: CurrentUser,
     session: SessionDep,
 ) -> StreamingResponse:
+    if not chat_limiter.allow(user.id):
+        raise HTTPException(
+            status.HTTP_429_TOO_MANY_REQUESTS, "Too many requests. Please slow down."
+        )
+
     user_message = Message(
         conversation_id=conversation.id, role="user", content=payload.content
     )
@@ -163,7 +171,10 @@ async def chat(
 
         async with SessionLocal() as write_session:
             assistant_message = Message(
-                conversation_id=conversation_id, role="assistant", content=reply
+                conversation_id=conversation_id,
+                role="assistant",
+                content=reply,
+                sources=sources or None,
             )
             write_session.add(assistant_message)
             await write_session.commit()

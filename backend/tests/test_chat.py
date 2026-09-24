@@ -149,3 +149,30 @@ def test_chat_rejects_empty_content(client: TestClient, signed_up: dict[str, str
     )
 
     assert response.status_code == 422
+
+
+def test_chat_is_rate_limited_per_user(
+    client: TestClient,
+    signed_up: dict[str, str],
+    fake_ollama: list,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from app.api.conversations import chat_limiter
+    from app.core.config import settings
+
+    monkeypatch.setattr(chat_limiter, "_limit", 2)
+    conversation_id = new_conversation(client)
+
+    codes = [
+        client.post(
+            f"/api/conversations/{conversation_id}/chat", json={"content": f"q{index}"}
+        ).status_code
+        for index in range(3)
+    ]
+
+    assert codes == [200, 200, 429]
+    assert settings.chat_requests_per_minute > 0
+
+    # The rejected request must not have stored anything.
+    stored = client.get(f"/api/conversations/{conversation_id}/messages").json()
+    assert [item["content"] for item in stored if item["role"] == "user"] == ["q0", "q1"]

@@ -1,9 +1,15 @@
 export type MessageRole = "user" | "assistant";
 
+export type Citation = {
+  filename: string;
+  page: number | null;
+};
+
 export type Message = {
   id: string;
   role: MessageRole;
   text: string;
+  sources: Citation[];
 };
 
 export type Chat = {
@@ -26,9 +32,4 @@ export type StoredDocument = {
   id: string;
   filename: string;
   status: DocumentStatus;
-};
-
-export type Citation = {
-  filename: string;
-  page: number | null;
 };

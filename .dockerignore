@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-server
+.git
+graphify-out
+backend/.venv
+backend/var
+backend/tests
+**/__pycache__
+*.log
+.env
+.env.local
