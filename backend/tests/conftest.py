@@ -65,10 +65,21 @@ def keyword_embedding(text: str) -> list[float]:
     return [value / magnitude for value in vector] if magnitude else vector
 
 
+def pytest_configure(config: pytest.Config) -> None:
+    config.addinivalue_line(
+        "markers", "real_embeddings: exercise app.rag.embed_batch itself, unstubbed"
+    )
+
+
 @pytest.fixture(autouse=True)
-def fake_embeddings(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[list[str]]]:
+def fake_embeddings(
+    request: pytest.FixtureRequest, monkeypatch: pytest.MonkeyPatch
+) -> Iterator[list[list[str]]]:
     """Autouse so no test ever reaches a real Ollama instance."""
     calls: list[list[str]] = []
+    if "real_embeddings" in request.keywords:
+        yield calls
+        return
 
     async def fake_embed(texts: list[str]) -> list[list[float]]:
         calls.append(texts)

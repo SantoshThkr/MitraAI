@@ -95,7 +95,7 @@ def test_messages_are_stored_and_paginated(
     page = client.get(
         f"/api/conversations/{conversation_id}/messages", params={"limit": 2, "offset": 1}
     ).json()
-    assert [message["content"] for message in page] == ["m1", "m2"]
+    assert [message["content"] for message in page] == ["m0", "m1"]
 
 
 def test_invalid_message_role_is_rejected(
@@ -133,3 +133,42 @@ def test_data_persists_across_sessions(client: TestClient, signed_up: dict[str, 
 
     messages = client.get(f"/api/conversations/{conversation_id}/messages").json()
     assert [message["content"] for message in messages] == ["still here"]
+
+
+def test_messages_returns_the_newest_page_oldest_first(
+    client: TestClient, signed_up: dict[str, str]
+) -> None:
+    """Regression: the endpoint used to return the oldest page, hiding the latest reply."""
+    conversation_id = create_conversation(client)
+    for index in range(60):
+        client.post(
+            f"/api/conversations/{conversation_id}/messages",
+            json={"role": "user", "content": f"msg-{index}"},
+        )
+
+    page = client.get(f"/api/conversations/{conversation_id}/messages").json()
+
+    assert len(page) == 50
+    assert page[0]["content"] == "msg-10"
+    assert page[-1]["content"] == "msg-59", "the newest message must be visible"
+
+
+def test_messages_offset_pages_backwards_through_history(
+    client: TestClient, signed_up: dict[str, str]
+) -> None:
+    conversation_id = create_conversation(client)
+    for index in range(5):
+        client.post(
+            f"/api/conversations/{conversation_id}/messages",
+            json={"role": "user", "content": f"m{index}"},
+        )
+
+    newest = client.get(
+        f"/api/conversations/{conversation_id}/messages", params={"limit": 2}
+    ).json()
+    older = client.get(
+        f"/api/conversations/{conversation_id}/messages", params={"limit": 2, "offset": 2}
+    ).json()
+
+    assert [item["content"] for item in newest] == ["m3", "m4"]
+    assert [item["content"] for item in older] == ["m1", "m2"]

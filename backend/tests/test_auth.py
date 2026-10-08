@@ -83,3 +83,18 @@ def test_short_password_is_rejected(client: TestClient) -> None:
     )
 
     assert response.status_code == 422
+
+
+def test_login_rejects_unknown_and_wrong_password_identically(
+    client: TestClient, signed_up: dict[str, str]
+) -> None:
+    """A wrong email and a wrong password must be indistinguishable to a prober."""
+    unknown = client.post(
+        "/api/auth/login", json={"email": "nobody@example.com", "password": "whatever-123"}
+    )
+    wrong = client.post(
+        "/api/auth/login", json={"email": signed_up["email"], "password": "whatever-123"}
+    )
+
+    assert unknown.status_code == wrong.status_code == 401
+    assert unknown.json() == wrong.json()

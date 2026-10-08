@@ -1,4 +1,5 @@
 import json
+import logging
 from collections.abc import AsyncIterator
 
 from fastapi import APIRouter, HTTPException, Query, status
@@ -11,7 +12,7 @@ from app.core.ratelimit import RateLimiter
 from app.db.models import Conversation, Message
 from app.db.session import SessionLocal
 from app.ollama import OllamaError, stream_chat
-from app.rag import build_grounded_prompt, search_chunks
+from app.rag import Retrieved, build_grounded_prompt, has_indexed_documents, search_chunks
 from app.schemas import (
     ChatRequest,
     ConversationCreate,
@@ -20,6 +21,8 @@ from app.schemas import (
     MessageCreate,
     MessageResponse,
 )
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/conversations", tags=["conversations"])
 
@@ -72,17 +75,23 @@ async def delete_conversation(conversation: OwnedConversation, session: SessionD
 async def list_messages(
     conversation: OwnedConversation,
     session: SessionDep,
-    limit: int = Query(50, ge=1, le=100),
+    limit: int = Query(50, ge=1, le=200),
     offset: int = Query(0, ge=0),
 ) -> list[Message]:
+    """The most recent `limit` messages, oldest first.
+
+    A chat needs the newest history, so paging walks backwards: `offset` skips that many
+    of the newest messages. Returning the oldest page instead would hide the latest
+    exchange once a conversation grew past `limit`.
+    """
     result = await session.scalars(
         select(Message)
         .where(Message.conversation_id == conversation.id)
-        .order_by(Message.created_at, Message.id)
+        .order_by(Message.created_at.desc(), Message.id.desc())
         .limit(limit)
         .offset(offset)
     )
-    return list(result)
+    return list(reversed(result.all()))
 
 
 @router.post(
@@ -139,7 +148,15 @@ async def chat(
         {"role": message.role, "content": message.content} for message in reversed(list(recent))
     ]
 
-    retrieved = await search_chunks(session, user.id, payload.content)
+    # Retrieval is best-effort: a failure here must not lose the chat request, and users
+    # with no indexed documents must not pay for an embedding round-trip at all.
+    retrieved: list[Retrieved] = []
+    if await has_indexed_documents(session, user.id):
+        try:
+            retrieved = await search_chunks(session, user.id, payload.content)
+        except OllamaError:
+            logger.warning("Retrieval unavailable; answering without document context")
+
     if retrieved:
         context.insert(0, {"role": "system", "content": build_grounded_prompt(retrieved)})
 

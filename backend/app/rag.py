@@ -9,7 +9,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
-from app.db.models import Document, DocumentChunk
+from app.db.models import EMBEDDING_DIMENSIONS, Document, DocumentChunk
 from app.ollama import OllamaError
 
 logger = logging.getLogger(__name__)
@@ -87,6 +87,17 @@ async def embed_batch(texts: list[str]) -> list[list[float]]:
             "Ollama embed returned %s vectors for %s inputs", len(embeddings or []), len(texts)
         )
         raise OllamaError("The AI service is unavailable.")
+
+    # Caught here rather than as an opaque database error on insert.
+    wrong = next((len(vector) for vector in embeddings if len(vector) != EMBEDDING_DIMENSIONS), None)
+    if wrong is not None:
+        logger.error(
+            "Embedding model %s returned %s dimensions, this deployment stores %s",
+            settings.ollama_embed_model,
+            wrong,
+            EMBEDDING_DIMENSIONS,
+        )
+        raise OllamaError("The embedding model is misconfigured.")
     return embeddings
 
 
@@ -118,6 +129,16 @@ async def index_document(session: AsyncSession, document: Document, data: bytes)
         ]
     )
     return len(chunks)
+
+
+async def has_indexed_documents(session: AsyncSession, user_id: uuid.UUID) -> bool:
+    """Cheap check so chats for users without documents skip embedding entirely."""
+    found = await session.scalar(
+        select(Document.id)
+        .where(Document.user_id == user_id, Document.status == "ready")
+        .limit(1)
+    )
+    return found is not None
 
 
 async def search_chunks(

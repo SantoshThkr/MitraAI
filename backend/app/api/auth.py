@@ -16,6 +16,10 @@ from app.schemas import LoginRequest, SignupRequest, UserResponse
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
+# Verified against when no account matches, so a wrong email and a wrong password take
+# the same time and cannot be told apart by an attacker probing for registered addresses.
+_ABSENT_USER_HASH = hash_password(generate_session_token())
+
 
 async def _start_session(response: Response, session: SessionDep, user: User) -> None:
     token = generate_session_token()
@@ -56,7 +60,8 @@ async def signup(payload: SignupRequest, response: Response, session: SessionDep
 @router.post("/login", response_model=UserResponse)
 async def login(payload: LoginRequest, response: Response, session: SessionDep) -> User:
     user = await session.scalar(select(User).where(User.email == payload.email.lower()))
-    if user is None or not verify_password(payload.password, user.password_hash):
+    password_hash = user.password_hash if user else _ABSENT_USER_HASH
+    if not verify_password(payload.password, password_hash) or user is None:
         raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Invalid email or password")
 
     await _start_session(response, session, user)

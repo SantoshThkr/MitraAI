@@ -84,7 +84,9 @@ removing a user or a document removes everything derived from it. Citations are 
 Two local models: a chat model (`OLLAMA_MODEL`) and an embedding model (`OLLAMA_EMBED_MODEL`).
 Chat uses `/api/chat` with `stream: true`; embeddings use `/api/embed` in batches of at most
 `EMBED_BATCH_SIZE`. Provider failures are logged server-side and returned to the client as a
-generic "The AI service is unavailable." so no host, port or model name leaks.
+generic "The AI service is unavailable." so no host, port or model name leaks. Embedding responses
+are checked for the expected vector width, so an embedding model whose dimensions do not match the
+`vector(768)` column fails with a clear "misconfigured" error instead of an opaque database error.
 
 ### Streaming architecture
 
@@ -101,6 +103,11 @@ before streaming begins, then the endpoint emits:
 
 The assistant message is written only when generation completes. If the client disconnects, the
 generator is closed and nothing partial is stored.
+
+`GET /api/conversations/{id}/messages` returns the **most recent** `limit` messages (default 50,
+max 200) in chronological order; `offset` pages backwards into older history. A chat needs its
+newest history, so returning the oldest page would hide the latest exchange once a conversation
+grew past the limit.
 
 ### Document processing
 
@@ -119,7 +126,12 @@ never reported `ready` with zero chunks.
 
 ### RAG pipeline
 
-On each chat request the question is embedded and searched against the user's own `ready`
+Retrieval is **conditional and best-effort**. A cheap existence query runs first: a user with no
+`ready` documents skips embedding altogether, so ordinary chat costs no extra model round-trip. If
+the embedding call does fail, the error is logged and the chat continues without document context
+rather than failing the request.
+
+When retrieval runs, the question is embedded and searched against the user's own `ready`
 documents. Chunks scoring at or above `RAG_SIMILARITY_THRESHOLD` (top `RAG_TOP_K`) are formatted
 into a system prompt that fences them between `<<<EXCERPTS>>>` markers and declares them untrusted
 data, instructing the model to ignore any directions inside them and to say it could not find the
@@ -132,7 +144,9 @@ Signup and login hash passwords with bcrypt and create a session row storing onl
 of the session token, so a database leak cannot be replayed as a cookie. The token goes to the
 browser in an HttpOnly, SameSite=Lax cookie (`COOKIE_SECURE=true` for HTTPS). Every private
 endpoint depends on `get_current_user`, and conversation and document routes additionally compare
-the row's `user_id` to the caller.
+the row's `user_id` to the caller. Login verifies a password against a throwaway hash when no
+account matches, so a wrong address and a wrong password take the same time and cannot be told
+apart by an attacker probing for registered emails.
 
 ## Local setup
 
@@ -167,6 +181,8 @@ docker compose exec ollama ollama pull nomic-embed-text
 
 The frontend is served on <http://localhost:5173> and proxies `/api` to the backend. PostgreSQL
 data and Ollama models persist in named volumes; the backend runs `alembic upgrade head` on start.
+The frontend waits for the backend's health check before starting, and both app services restart
+unless explicitly stopped.
 
 ## Environment variables
 
@@ -206,11 +222,15 @@ npm run lint && npm run typecheck && npm run build
 
 Backend tests run against a real PostgreSQL database and mock only Ollama, so extraction,
 chunking, batching, vector search, ownership isolation and SSE framing are exercised for real.
-CI runs both suites on every push and pull request.
+The Ollama stub is autouse, so **no test needs a running Ollama** — only PostgreSQL with pgvector.
+A test that needs the real embedding code path opts out with `@pytest.mark.real_embeddings` and
+stubs the HTTP layer instead. CI runs both suites on every push and pull request.
 
 ## Known limitations
 
 - Document indexing is synchronous inside the upload request; a large PDF blocks that request.
+- The API can page backwards through message history, but the UI has no "load older messages"
+  control yet, so it shows the most recent 50 of a long conversation.
 - The rate limiter keeps counters in process memory, so it does not hold across multiple workers.
 - No OCR: a scanned, image-only PDF yields no text and is rejected as unreadable.
 - Chunking is fixed-size character windows with no sentence or semantic awareness, and there is no
@@ -227,6 +247,7 @@ CI runs both suites on every push and pull request.
 ## Future improvements
 
 - Move indexing to a background task so uploads return immediately with a `processing` status
+- A "load older messages" control that uses the existing backwards pagination
 - Sentence-aware chunking and a reranking pass over retrieved chunks
 - Token-budgeted conversation context instead of a fixed message count
 - Shared-state rate limiting and object storage for uploads, for multi-instance deployment
