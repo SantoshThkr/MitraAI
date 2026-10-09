@@ -12,6 +12,7 @@ from app.core.ratelimit import RateLimiter
 from app.db.models import Conversation, Message
 from app.db.session import SessionLocal
 from app.ollama import OllamaError, stream_chat
+from app.prompts import system_prompt
 from app.rag import Retrieved, build_grounded_prompt, has_indexed_documents, search_chunks
 from app.schemas import (
     ChatRequest,
@@ -157,8 +158,11 @@ async def chat(
         except OllamaError:
             logger.warning("Retrieval unavailable; answering without document context")
 
+    # The application's own instructions always come first; document grounding is an
+    # extra system turn so retrieval never replaces the assistant's identity or rules.
     if retrieved:
         context.insert(0, {"role": "system", "content": build_grounded_prompt(retrieved)})
+    context.insert(0, {"role": "system", "content": system_prompt()})
 
     sources = [
         {"filename": item.filename, "page": item.page, "similarity": round(item.similarity, 4)}

@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     session_ttl_days: int = 7
     cookie_secure: bool = False
 
+    assistant_name: str = "MitraAI"
     ollama_base_url: str = "http://127.0.0.1:11434"
     ollama_model: str = "qwen2.5:0.5b"
     ollama_embed_model: str = "nomic-embed-text"

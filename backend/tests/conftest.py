@@ -6,13 +6,14 @@ os.environ.setdefault(
     "DATABASE_URL", "postgresql+asyncpg://postgres:postgres@127.0.0.1:55432/mitraai_test"
 )
 
-from collections.abc import Iterator
+from collections.abc import AsyncIterator, Iterator
 
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import text
 
 from app import rag
+from app.api import conversations
 from app.api.conversations import chat_limiter
 from app.db.base import Base
 from app.db.models import EMBEDDING_DIMENSIONS
@@ -87,3 +88,17 @@ def fake_embeddings(
 
     monkeypatch.setattr(rag, "embed_batch", fake_embed)
     yield calls
+
+
+@pytest.fixture
+def fake_ollama(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[list[dict[str, str]]]]:
+    """Replace the Ollama call with a deterministic token stream."""
+    captured: list[list[dict[str, str]]] = []
+
+    async def fake_stream(messages: list[dict[str, str]]) -> AsyncIterator[str]:
+        captured.append(messages)
+        for token in ["Hello", " ", "there"]:
+            yield token
+
+    monkeypatch.setattr(conversations, "stream_chat", fake_stream)
+    yield captured

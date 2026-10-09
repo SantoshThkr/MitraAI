@@ -13,6 +13,7 @@ own PostgreSQL database.
 
 ## Key features
 
+- A configurable application-level assistant identity (`ASSISTANT_NAME`, default `MitraAI`)
 - Email + password accounts with server-side sessions in an HttpOnly cookie
 - Persistent conversations and messages, scoped strictly to their owner
 - Token-by-token streaming over Server-Sent Events, with a working stop/cancel
@@ -61,6 +62,14 @@ single `services/api.ts` module wraps `fetch`, and the SSE stream is parsed from
 `response.body` with a `ReadableStream` reader so the request can carry a session cookie and be
 aborted with an `AbortController`.
 
+Replies are rendered by a small in-house Markdown renderer
+([`components/Results.tsx`](src/components/Results.tsx)) rather than a Markdown dependency. It
+handles fenced code blocks with a language label and a per-block copy button, headings, ordered and
+unordered lists, inline code, bold and italic, and it applies CommonMark backslash escapes — an
+escaped `\#` renders as a literal `#` instead of showing the backslash. Escapes are swapped for
+placeholders before any emphasis matching, so an escaped `\*\*` is never mistaken for bold. All
+content goes through React's normal text rendering, so no HTML from a model reaches the DOM.
+
 ### Backend stack
 
 FastAPI, Pydantic v2 and pydantic-settings, SQLAlchemy 2.x async with the asyncpg driver, Alembic
@@ -79,6 +88,26 @@ removing a user or a document removes everything derived from it. Citations are 
 `vector_cosine_ops`. Similarity search runs in the database as `1 - cosine_distance`, joined to
 `documents` and filtered by `user_id` so the user filter is part of the query itself.
 
+### Assistant identity and the underlying model
+
+These are two separate things, and the system prompt in [`app/prompts.py`](backend/app/prompts.py)
+keeps them separate:
+
+- **`ASSISTANT_NAME`** (default `MitraAI`) is the name the assistant answers with. It is
+  application branding, set by whoever runs the instance.
+- **`OLLAMA_MODEL`** is the open-weight model that actually generates the text.
+
+Every chat turn is sent with this prompt as the first system message, so the assistant introduces
+itself as `ASSISTANT_NAME`, names the real model when asked which model or engine powers it, and
+explains that renaming the assistant changes the display name only — it does not swap the model.
+Without it the model answered as its own vendor assistant and that identity leaked into unrelated
+questions. When document grounding applies it is appended as a *second* system message, so
+retrieval never replaces the assistant's identity or answering rules.
+
+The prompt also states the cost position accurately: this instance runs inference locally through
+Ollama, so there is no payment to an AI API provider, while hardware, electricity and anything else
+the operator adds still cost money. It does not claim that every deployment is free.
+
 ### Ollama
 
 Two local models: a chat model (`OLLAMA_MODEL`) and an embedding model (`OLLAMA_EMBED_MODEL`).
@@ -87,6 +116,16 @@ Chat uses `/api/chat` with `stream: true`; embeddings use `/api/embed` in batche
 generic "The AI service is unavailable." so no host, port or model name leaks. Embedding responses
 are checked for the expected vector width, so an embedding model whose dimensions do not match the
 `vector(768)` column fails with a clear "misconfigured" error instead of an opaque database error.
+A 404 from Ollama means the server is up but the model was never pulled, and it is reported as
+"The model '<name>' is not installed on the AI service." rather than a generic outage.
+
+**Choosing a chat model.** The default `qwen2.5:0.5b` is small so that `docker compose up` is quick:
+it follows the system prompt correctly — right identity, no arbitrary refusals, code when asked —
+but its answers are shallow, and it sometimes picks an odd language for a one-word request. A
+larger model gives noticeably better answers to the same prompts; `qwen3:4b` (~2.5 GB) was
+verified against this build and handled identity, renaming, cost and code requests well, at the
+cost of being much slower on modest hardware. Set `OLLAMA_MODEL` to whatever your machine can
+afford and remember to `ollama pull` it.
 
 ### Streaming architecture
 
@@ -196,6 +235,7 @@ All backend settings, with their defaults (see `backend/.env.example`):
 | `SESSION_TTL_DAYS` | `7` | session lifetime |
 | `COOKIE_SECURE` | `false` | must be `true` behind HTTPS |
 | `OLLAMA_BASE_URL` | `http://127.0.0.1:11434` | local Ollama endpoint |
+| `ASSISTANT_NAME` | `MitraAI` | the name the assistant answers with (branding only) |
 | `OLLAMA_MODEL` | `qwen2.5:0.5b` | chat model |
 | `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | embedding model (768 dimensions) |
 | `CHAT_CONTEXT_MESSAGES` | `20` | recent messages sent as context |
@@ -242,6 +282,12 @@ stubs the HTTP layer instead. CI runs both suites on every push and pull request
 - Uploaded files are stored on the local filesystem, so the backend is not horizontally scalable
   as-is.
 - Cancelling a generation discards the partial reply rather than saving it.
+- A turn that produces no reply (provider error, empty response) is discarded entirely, so the
+  question is returned to the input box instead of being left unanswered in the thread.
+- Answer quality is bounded by the chosen model. The system prompt fixes identity and stops
+  arbitrary refusals, but a 0.5B model still reasons poorly; see **Choosing a chat model**.
+- The Markdown renderer is deliberately small: no tables, blockquotes, images or syntax
+  highlighting.
 - No password reset, email verification, OAuth, or roles.
 
 ## Future improvements

@@ -17,20 +17,6 @@ def parse_events(body: str) -> list[dict]:
 
 
 @pytest.fixture
-def fake_ollama(monkeypatch: pytest.MonkeyPatch) -> Iterator[list[list[dict[str, str]]]]:
-    """Replace the Ollama call with a deterministic token stream."""
-    captured: list[list[dict[str, str]]] = []
-
-    async def fake_stream(messages: list[dict[str, str]]) -> AsyncIterator[str]:
-        captured.append(messages)
-        for token in ["Hello", " ", "there"]:
-            yield token
-
-    monkeypatch.setattr(conversations, "stream_chat", fake_stream)
-    yield captured
-
-
-@pytest.fixture
 def failing_ollama(monkeypatch: pytest.MonkeyPatch) -> None:
     async def fake_stream(messages: list[dict[str, str]]) -> AsyncIterator[str]:
         raise OllamaError("The AI service is unavailable.")
@@ -120,9 +106,10 @@ def test_chat_sends_bounded_context(
     client.post(f"/api/conversations/{conversation_id}/chat", json={"content": "newest"})
 
     sent = fake_ollama[0]
-    assert len(sent) == settings.chat_context_messages
-    assert sent[-1] == {"role": "user", "content": "newest"}
-    assert all("old-0" != message["content"] for message in sent)
+    history = [item for item in sent if item["role"] != "system"]
+    assert len(history) == settings.chat_context_messages
+    assert history[-1] == {"role": "user", "content": "newest"}
+    assert all("old-0" != message["content"] for message in history)
 
 
 def test_chat_reports_provider_failure_without_leaking_details(
