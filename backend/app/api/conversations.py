@@ -165,7 +165,17 @@ async def chat(
         for item in retrieved
     ]
     conversation_id = conversation.id
+    user_message_id = user_message.id
     user_event = _event({"type": "user_message", "message": _serialize(user_message)})
+
+    async def discard_user_message() -> None:
+        """A turn that produced no reply is not an exchange: keeping it would show an
+        unanswered message in the history and send a duplicate on every retry."""
+        async with SessionLocal() as cleanup_session:
+            stale = await cleanup_session.get(Message, user_message_id)
+            if stale is not None:
+                await cleanup_session.delete(stale)
+                await cleanup_session.commit()
 
     async def events() -> AsyncIterator[str]:
         yield user_event
@@ -178,11 +188,13 @@ async def chat(
                 chunks.append(token)
                 yield _event({"type": "token", "text": token})
         except OllamaError as error:
+            await discard_user_message()
             yield _event({"type": "error", "detail": str(error)})
             return
 
         reply = "".join(chunks).strip()
         if not reply:
+            await discard_user_message()
             yield _event({"type": "error", "detail": "The AI service returned no reply."})
             return
 

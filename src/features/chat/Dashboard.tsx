@@ -60,6 +60,13 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
         : previous,
     );
 
+  const dropMessage = (chatId: string, messageId: string) =>
+    setLoadedMessages((previous) =>
+      previous && previous.chatId === chatId
+        ? { chatId, items: previous.items.filter((item) => item.id !== messageId) }
+        : previous,
+    );
+
   useEffect(() => {
     document.documentElement.classList.toggle("light", theme === "light");
     document.documentElement.classList.toggle("dark", theme === "dark");
@@ -182,6 +189,8 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
 
     const controller = new AbortController();
     abortRef.current = controller;
+    // A holder, not a plain variable: it is assigned inside the stream callbacks.
+    const sent: { message: { chatId: string; id: string } | null } = { message: null };
 
     try {
       let chat = activeChat;
@@ -198,12 +207,14 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
         trimmedQuery,
         {
           onUserMessage: (message) => {
+            sent.message = { chatId, id: message.id };
             appendMessage(chatId, message);
             setQuery("");
           },
           onSources: setLiveSources,
           onToken: (text) => setStreamingText((previous) => (previous ?? "") + text),
           onDone: (message) => {
+            sent.message = null;
             setStreamingText(null);
             setLiveSources([]);
             appendMessage(chatId, message);
@@ -212,7 +223,13 @@ const Dashboard = ({ user, onLoggedOut }: DashboardProps) => {
         controller.signal,
       );
     } catch (requestError) {
+      // The server discards a turn that produced no reply, so drop it here too and give
+      // the question back instead of leaving an unanswered message in the thread.
+      if (sent.message) {
+        dropMessage(sent.message.chatId, sent.message.id);
+      }
       if (!controller.signal.aborted) {
+        setQuery(trimmedQuery);
         setError(toErrorMessage(requestError));
       }
     } finally {

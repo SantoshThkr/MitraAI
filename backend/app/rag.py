@@ -10,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.db.models import EMBEDDING_DIMENSIONS, Document, DocumentChunk
-from app.ollama import OllamaError
+from app.ollama import OllamaError, describe_failure
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +76,11 @@ async def embed_batch(texts: list[str]) -> list[list[float]]:
             )
             if response.status_code != 200:
                 logger.error("Ollama embed returned %s: %s", response.status_code, response.text)
-                raise OllamaError("The AI service is unavailable.")
+                raise OllamaError(
+                    describe_failure(
+                        response.status_code, response.text, settings.ollama_embed_model
+                    )
+                )
             embeddings = response.json().get("embeddings")
     except httpx.HTTPError as error:
         logger.error("Ollama embed request failed: %s", error)
